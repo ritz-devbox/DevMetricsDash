@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-accent: #8b5cf6;
+    --color-accent-light: #a78bfa;
+    --color-bg: #0d1117;
+    --color-bg-card: #161b22;
+    --color-border: #30363d;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: #e6edf3;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d1117;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-xl border border-dark-600/50 bg-dark-800/80 backdrop-blur-xl;
+    background: linear-gradient(
+      135deg,
+      rgba(22, 27, 34, 0.9) 0%,
+      rgba(13, 17, 23, 0.95) 100%
+    );
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-dark-600;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .glow-text {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-text-purple {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-border {
+    position: relative;
+  }
+
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .glow-border:hover::before {
+    opacity: 1;
+  }
+
+  .stat-card {
+    @apply glass-card-hover p-5 relative overflow-hidden;
+  }
+
+  .stat-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.1;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .stat-card:hover::after {
+    opacity: 0.2;
+  }
+
+  .stat-card.purple::after {
+    background: #8b5cf6;
+  }
+
+  .stat-card.cyan::after {
+    background: #06b6d4;
+  }
+
+  .stat-card.green::after {
+    background: #10b981;
+  }
+
+  .stat-card.yellow::after {
+    background: #f59e0b;
+  }
+
+  .stat-card.pink::after {
+    background: #ec4899;
+  }
+
+  .stat-card.orange::after {
+    background: #f97316;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-dark-300 transition-all duration-200;
+  }
+
+  .nav-link:hover {
+    @apply bg-dark-700/50 text-dark-100;
+  }
+
+  .nav-link.active {
+    @apply bg-accent-purple/10 text-accent-purple;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-elite {
+    @apply bg-emerald-500/10 text-emerald-400;
+  }
+
+  .badge-high {
+    @apply bg-cyan-500/10 text-cyan-400;
+  }
+
+  .badge-medium {
+    @apply bg-yellow-500/10 text-yellow-400;
+  }
+
+  .badge-low {
+    @apply bg-red-500/10 text-red-400;
+  }
+}
+
+/* Recharts overrides */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #21262d;
+}
+
+.recharts-text {
+  fill: #8b949e;
+  font-size: 11px;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    #161b22 4%,
+    #21262d 25%,
+    #161b22 36%
+  );
+  background-size: 1000px 100%;
+}
+

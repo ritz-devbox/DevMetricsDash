@@ -1,0 +1,30 @@
+{
+  "name": "devmetricsdash",
+  "version": "1.0.0",
+  "description": "🚀 A stunning developer metrics dashboard that lives inside your GitHub repo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "tsx scripts/fetch-metrics.ts",
+    "generate:svg": "tsx scripts/generate-svg-charts.ts",
+    "generate:readme": "tsx scripts/generate-readme.ts",
+    "update": "npm run fetch && npm run generate:svg && npm run generate:readme",
+    "dashboard:dev": "cd dashboard && npm run dev",
+    "dashboard:build": "cd dashboard && npm run build",
+    "dashboard:preview": "cd dashboard && npm run preview",
+    "setup": "npm install && cd dashboard && npm install"
+  },
+  "dependencies": {
+    "@octokit/graphql": "^7.0.2",
+    "@octokit/rest": "^20.0.2",
+    "dotenv": "^16.4.5",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
+

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="110" viewBox="0 0 840 110">
+  <defs>
+    <linearGradient id="bannerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .stat-icon { font: 400 18px 'Segoe UI', system-ui, sans-serif; }
+    .stat-value { font: 700 20px 'Segoe UI', system-ui, sans-serif; }
+    .stat-label { font: 400 10px 'Segoe UI', system-ui, sans-serif; fill: #8B949E; }
+  </style>
+
+  <rect width="840" height="110" rx="10" fill="url(#bannerGrad)" stroke="#30363D" stroke-width="1"/>
+  <text x="82.5" y="35" class="stat-icon" text-anchor="middle">⚡</text>
+  <text x="82.5" y="62" class="stat-value" text-anchor="middle" fill="#8B5CF6">486</text>
+  <text x="82.5" y="80" class="stat-label" text-anchor="middle">Commits</text>
+  <line x1="150" y1="20" x2="150" y2="90" stroke="#30363D" stroke-width="0.5"/>
+  <text x="217.5" y="35" class="stat-icon" text-anchor="middle">🔀</text>
+  <text x="217.5" y="62" class="stat-value" text-anchor="middle" fill="#06B6D4">111</text>
+  <text x="217.5" y="80" class="stat-label" text-anchor="middle">PRs Merged</text>
+  <line x1="285" y1="20" x2="285" y2="90" stroke="#30363D" stroke-width="0.5"/>
+  <text x="352.5" y="35" class="stat-icon" text-anchor="middle">👀</text>
+  <text x="352.5" y="62" class="stat-value" text-anchor="middle" fill="#10B981">248</text>
+  <text x="352.5" y="80" class="stat-label" text-anchor="middle">Reviews</text>
+  <line x1="420" y1="20" x2="420" y2="90" stroke="#30363D" stroke-width="0.5"/>
+  <text x="487.5" y="35" class="stat-icon" text-anchor="middle">🐛</text>
+  <text x="487.5" y="62" class="stat-value" text-anchor="middle" fill="#F59E0B">90</text>
+  <text x="487.5" y="80" class="stat-label" text-anchor="middle">Issues Closed</text>
+  <line x1="555" y1="20" x2="555" y2="90" stroke="#30363D" stroke-width="0.5"/>
+  <text x="622.5" y="35" class="stat-icon" text-anchor="middle">🚀</text>
+  <text x="622.5" y="62" class="stat-value" text-anchor="middle" fill="#EC4899">24</text>
+  <text x="622.5" y="80" class="stat-label" text-anchor="middle">Releases</text>
+  <line x1="690" y1="20" x2="690" y2="90" stroke="#30363D" stroke-width="0.5"/>
+  <text x="757.5" y="35" class="stat-icon" text-anchor="middle">⏱️</text>
+  <text x="757.5" y="62" class="stat-value" text-anchor="middle" fill="#F97316">4.8h</text>
+  <text x="757.5" y="80" class="stat-label" text-anchor="middle">Avg Merge</text>
+</svg>

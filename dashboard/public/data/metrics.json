@@ -1,0 +1,4919 @@
+{
+  "generated_at": "2026-02-16T21:46:49.161Z",
+  "config": {
+    "owner": "demo-org",
+    "lookback_days": 90
+  },
+  "summary": {
+    "total_commits": 486,
+    "total_prs": 158,
+    "total_prs_merged": 111,
+    "total_issues": 116,
+    "total_issues_closed": 90,
+    "total_reviews": 248,
+    "total_releases": 24,
+    "total_contributors": 6,
+    "total_repositories": 5,
+    "avg_pr_merge_time_hours": 4.8,
+    "avg_time_to_first_review_hours": 5.3,
+    "avg_issue_close_time_hours": 61.4,
+    "code_additions": 30591,
+    "code_deletions": 13864
+  },
+  "contributors": [
+    {
+      "username": "alexchen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1?v=4",
+      "total_commits": 147,
+      "total_prs": 41,
+      "total_reviews": 54,
+      "total_issues": 13,
+      "additions": 21617,
+      "deletions": 6599,
+      "active_days": 40,
+      "first_commit_date": "2025-11-21T18:02:32.162Z",
+      "last_commit_date": "2026-02-15T02:23:23.162Z"
+    },
+    {
+      "username": "sarahdev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2?v=4",
+      "total_commits": 37,
+      "total_prs": 43,
+      "total_reviews": 19,
+      "total_issues": 8,
+      "additions": 6985,
+      "deletions": 1032,
+      "active_days": 37,
+      "first_commit_date": "2026-02-02T23:58:26.162Z",
+      "last_commit_date": "2026-02-16T03:11:11.162Z"
+    },
+    {
+      "username": "mikejones",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3?v=4",
+      "total_commits": 176,
+      "total_prs": 11,
+      "total_reviews": 26,
+      "total_issues": 7,
+      "additions": 15699,
+      "deletions": 5932,
+      "active_days": 38,
+      "first_commit_date": "2025-11-19T23:29:09.162Z",
+      "last_commit_date": "2026-02-15T18:11:12.162Z"
+    },
+    {
+      "username": "emilyz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4?v=4",
+      "total_commits": 54,
+      "total_prs": 29,
+      "total_reviews": 35,
+      "total_issues": 18,
+      "additions": 11757,
+      "deletions": 7022,
+      "active_days": 50,
+      "first_commit_date": "2026-01-01T14:05:41.162Z",
+      "last_commit_date": "2026-02-15T19:43:34.162Z"
+    },
+    {
+      "username": "jamesw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5?v=4",
+      "total_commits": 125,
+      "total_prs": 7,
+      "total_reviews": 24,
+      "total_issues": 11,
+      "additions": 7073,
+      "deletions": 2423,
+      "active_days": 48,
+      "first_commit_date": "2026-02-06T03:23:24.162Z",
+      "last_commit_date": "2026-02-15T01:26:36.162Z"
+    },
+    {
+      "username": "priyak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6?v=4",
+      "total_commits": 83,
+      "total_prs": 17,
+      "total_reviews": 24,
+      "total_issues": 5,
+      "additions": 9193,
+      "deletions": 586,
+      "active_days": 38,
+      "first_commit_date": "2026-01-28T18:36:56.162Z",
+      "last_commit_date": "2026-02-13T04:33:33.162Z"
+    }
+  ],
+  "commits": [
+    {
+      "sha": "wpz6jtwe",
+      "message": "feat: add webhook integration support",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-02-14T01:14:25.162Z",
+      "additions": 237,
+      "deletions": 23,
+      "files_changed": 17,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "iq667xm1",
+      "message": "test: add integration tests for auth module",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-02-11T21:10:45.162Z",
+      "additions": 268,
+      "deletions": 199,
+      "files_changed": 2,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "w3exbd12",
+      "message": "fix: correct timezone handling in scheduler",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2026-02-11T01:08:57.162Z",
+      "additions": 295,
+      "deletions": 98,
+      "files_changed": 14,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "k78u6qw2",
+      "message": "feat: implement role-based access control",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2026-02-09T17:09:01.162Z",
+      "additions": 313,
+      "deletions": 219,
+      "files_changed": 2,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "7qjq2uy2",
+      "message": "feat: add export to CSV functionality",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2026-02-08T14:05:42.162Z",
+      "additions": 263,
+      "deletions": 74,
+      "files_changed": 8,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "g4bhv4bt",
+      "message": "fix: correct pagination logic",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-02-02T19:43:57.162Z",
+      "additions": 7,
+      "deletions": 144,
+      "files_changed": 12,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "5rnf8k59",
+      "message": "feat: implement user authentication flow",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2026-02-02T18:41:32.162Z",
+      "additions": 144,
+      "deletions": 123,
+      "files_changed": 9,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "3t61nr10",
+      "message": "feat: implement file upload with progress tracking",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2026-02-01T00:35:32.162Z",
+      "additions": 431,
+      "deletions": 63,
+      "files_changed": 16,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "96dqr6xi",
+      "message": "fix: handle edge case in payment processing",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-26T15:37:12.162Z",
+      "additions": 60,
+      "deletions": 97,
+      "files_changed": 19,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "pbdc0cfl",
+      "message": "feat: add export to CSV functionality",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-26T01:54:48.162Z",
+      "additions": 120,
+      "deletions": 76,
+      "files_changed": 15,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "89zd633e",
+      "message": "feat: implement file upload with progress tracking",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-24T00:40:23.162Z",
+      "additions": 386,
+      "deletions": 79,
+      "files_changed": 20,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "16m67khs",
+      "message": "perf: optimize bundle size with code splitting",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "date": "2026-01-22T02:40:08.162Z",
+      "additions": 207,
+      "deletions": 144,
+      "files_changed": 14,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "9ozzqhex",
+      "message": "feat: add real-time notification system",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-18T03:26:26.162Z",
+      "additions": 271,
+      "deletions": 44,
+      "files_changed": 5,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "evcfvu9j",
+      "message": "refactor: optimize database query performance",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2026-01-17T01:55:04.162Z",
+      "additions": 18,
+      "deletions": 222,
+      "files_changed": 9,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "vttxgtcc",
+      "message": "feat: add webhook integration support",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2026-01-16T04:21:25.162Z",
+      "additions": 382,
+      "deletions": 120,
+      "files_changed": 4,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "18l53ov3",
+      "message": "perf: optimize bundle size with code splitting",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2026-01-16T02:56:42.162Z",
+      "additions": 416,
+      "deletions": 116,
+      "files_changed": 20,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "aq2tjeyz",
+      "message": "refactor: optimize database query performance",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "date": "2026-01-16T02:24:50.162Z",
+      "additions": 141,
+      "deletions": 78,
+      "files_changed": 9,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "ddkde150",
+      "message": "feat: implement user authentication flow",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2026-01-16T02:04:23.162Z",
+      "additions": 248,
+      "deletions": 33,
+      "files_changed": 11,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "vlxghgf5",
+      "message": "test: add integration tests for auth module",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "date": "2026-01-15T01:57:43.162Z",
+      "additions": 86,
+      "deletions": 70,
+      "files_changed": 6,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "dfzwjxo1",
+      "message": "fix: handle null values in data transformation",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-14T01:57:09.162Z",
+      "additions": 333,
+      "deletions": 20,
+      "files_changed": 17,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "cotl1vy5",
+      "message": "fix: correct pagination logic",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-09T23:48:36.162Z",
+      "additions": 393,
+      "deletions": 20,
+      "files_changed": 20,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "znjw79d3",
+      "message": "feat: implement file upload with progress tracking",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2026-01-07T01:14:07.162Z",
+      "additions": 173,
+      "deletions": 203,
+      "files_changed": 9,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "vdo3kl8p",
+      "message": "feat: add export to CSV functionality",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2026-01-02T21:43:17.162Z",
+      "additions": 409,
+      "deletions": 134,
+      "files_changed": 18,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "nlj52fu2",
+      "message": "chore: update dependencies to latest versions",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-27T14:50:43.162Z",
+      "additions": 458,
+      "deletions": 143,
+      "files_changed": 15,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "603wj72j",
+      "message": "refactor: migrate to new state management",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-26T03:41:24.162Z",
+      "additions": 80,
+      "deletions": 71,
+      "files_changed": 13,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "vdeg50a5",
+      "message": "fix: correct timezone handling in scheduler",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2025-12-24T22:40:07.162Z",
+      "additions": 94,
+      "deletions": 169,
+      "files_changed": 15,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "wh21drym",
+      "message": "refactor: optimize database query performance",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2025-12-24T00:40:24.162Z",
+      "additions": 105,
+      "deletions": 200,
+      "files_changed": 12,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "vu65halv",
+      "message": "fix: resolve race condition in async operations",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2025-12-23T04:35:21.162Z",
+      "additions": 305,
+      "deletions": 180,
+      "files_changed": 2,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "91gd1mjr",
+      "message": "chore: update dependencies to latest versions",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "date": "2025-12-17T15:20:31.162Z",
+      "additions": 255,
+      "deletions": 39,
+      "files_changed": 19,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "ioht0siv",
+      "message": "feat: add webhook integration support",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2025-12-16T00:32:57.162Z",
+      "additions": 365,
+      "deletions": 226,
+      "files_changed": 15,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "lyv7ehw1",
+      "message": "feat: implement search functionality with filters",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2025-12-12T21:08:03.162Z",
+      "additions": 261,
+      "deletions": 246,
+      "files_changed": 9,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "2xsxfy7y",
+      "message": "perf: optimize bundle size with code splitting",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "date": "2025-12-09T21:54:42.162Z",
+      "additions": 329,
+      "deletions": 166,
+      "files_changed": 19,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "6s5fl6dn",
+      "message": "refactor: optimize database query performance",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2025-12-09T14:43:35.162Z",
+      "additions": 414,
+      "deletions": 19,
+      "files_changed": 3,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "uypg3uo5",
+      "message": "fix: resolve memory leak in data processing",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-08T15:54:13.162Z",
+      "additions": 294,
+      "deletions": 74,
+      "files_changed": 1,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "pjk7mk5l",
+      "message": "chore: update dependencies to latest versions",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "date": "2025-12-07T23:19:13.162Z",
+      "additions": 126,
+      "deletions": 228,
+      "files_changed": 17,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "w4bkj5fs",
+      "message": "fix: resolve race condition in async operations",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2025-12-07T22:26:45.162Z",
+      "additions": 397,
+      "deletions": 116,
+      "files_changed": 20,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "w4ckbkkp",
+      "message": "chore: update dependencies to latest versions",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "date": "2025-12-05T15:09:30.162Z",
+      "additions": 295,
+      "deletions": 14,
+      "files_changed": 17,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "hk10nj4l",
+      "message": "feat: implement role-based access control",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-03T17:32:46.162Z",
+      "additions": 29,
+      "deletions": 15,
+      "files_changed": 8,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "c4cn8678",
+      "message": "feat: implement file upload with progress tracking",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-03T17:09:40.162Z",
+      "additions": 158,
+      "deletions": 235,
+      "files_changed": 2,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "15gnrepu",
+      "message": "feat: add real-time notification system",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-12-03T04:13:52.162Z",
+      "additions": 55,
+      "deletions": 154,
+      "files_changed": 9,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "mfe5pldx",
+      "message": "feat: add real-time notification system",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "date": "2025-12-02T01:24:58.162Z",
+      "additions": 490,
+      "deletions": 225,
+      "files_changed": 15,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "fk34j326",
+      "message": "fix: handle edge case in payment processing",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "date": "2025-12-01T15:40:18.162Z",
+      "additions": 311,
+      "deletions": 12,
+      "files_changed": 6,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "ch1os1qo",
+      "message": "feat: implement user authentication flow",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "date": "2025-12-01T00:38:38.162Z",
+      "additions": 485,
+      "deletions": 173,
+      "files_changed": 13,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "wskmh3x8",
+      "message": "feat: add export to CSV functionality",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "date": "2025-11-27T21:05:32.162Z",
+      "additions": 250,
+      "deletions": 128,
+      "files_changed": 3,
+      "repo": "ml-pipeline"
+    },
+    {
+      "sha": "qk3gz1n1",
+      "message": "fix: handle edge case in payment processing",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "date": "2025-11-25T02:44:42.162Z",
+      "additions": 15,
+      "deletions": 166,
+      "files_changed": 1,
+      "repo": "web-platform"
+    },
+    {
+      "sha": "bnczgr4n",
+      "message": "fix: resolve race condition in async operations",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2025-11-24T15:47:45.162Z",
+      "additions": 278,
+      "deletions": 95,
+      "files_changed": 5,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "enthgj9q",
+      "message": "fix: handle null values in data transformation",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "date": "2025-11-24T03:28:05.162Z",
+      "additions": 238,
+      "deletions": 113,
+      "files_changed": 7,
+      "repo": "api-gateway"
+    },
+    {
+      "sha": "1k92v30o",
+      "message": "feat: add webhook integration support",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2025-11-22T20:08:40.162Z",
+      "additions": 482,
+      "deletions": 59,
+      "files_changed": 17,
+      "repo": "mobile-app"
+    },
+    {
+      "sha": "ghfj7d7w",
+      "message": "test: add integration tests for auth module",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2025-11-20T23:42:00.162Z",
+      "additions": 403,
+      "deletions": 192,
+      "files_changed": 9,
+      "repo": "infra-config"
+    },
+    {
+      "sha": "x9dbvrlb",
+      "message": "feat: implement search functionality with filters",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "date": "2025-11-19T17:14:46.162Z",
+      "additions": 51,
+      "deletions": 88,
+      "files_changed": 20,
+      "repo": "infra-config"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 115,
+      "title": "Fix: Timezone handling improvements",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "merged",
+      "created_at": "2026-02-17T04:20:59.163Z",
+      "merged_at": "2026-02-18T00:50:59.163Z",
+      "closed_at": "2026-02-18T00:50:59.163Z",
+      "additions": 619,
+      "deletions": 143,
+      "files_changed": 21,
+      "comments": 14,
+      "review_comments": 5,
+      "reviews": 4,
+      "time_to_merge_hours": 20.5,
+      "time_to_first_review_hours": 11.9,
+      "repo": "api-gateway",
+      "labels": [
+        "feature",
+        "documentation",
+        "dependencies"
+      ]
+    },
+    {
+      "number": 114,
+      "title": "Fix: Memory leak in data processing pipeline",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "merged",
+      "created_at": "2026-02-17T03:12:48.163Z",
+      "merged_at": "2026-02-19T23:12:48.163Z",
+      "closed_at": "2026-02-19T23:12:48.163Z",
+      "additions": 128,
+      "deletions": 364,
+      "files_changed": 4,
+      "comments": 8,
+      "review_comments": 18,
+      "reviews": 5,
+      "time_to_merge_hours": 68,
+      "time_to_first_review_hours": 10.7,
+      "repo": "mobile-app",
+      "labels": [
+        "documentation",
+        "dependencies"
+      ]
+    },
+    {
+      "number": 124,
+      "title": "Fix: Pagination boundary conditions",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "state": "merged",
+      "created_at": "2026-02-13T20:23:53.163Z",
+      "merged_at": "2026-02-15T00:35:53.163Z",
+      "closed_at": "2026-02-15T00:35:53.163Z",
+      "additions": 515,
+      "deletions": 264,
+      "files_changed": 4,
+      "comments": 9,
+      "review_comments": 18,
+      "reviews": 3,
+      "time_to_merge_hours": 28.2,
+      "time_to_first_review_hours": 6.1,
+      "repo": "mobile-app",
+      "labels": [
+        "documentation",
+        "dependencies",
+        "feature"
+      ]
+    },
+    {
+      "number": 117,
+      "title": "Fix: Memory leak in data processing pipeline",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "merged",
+      "created_at": "2026-02-07T18:04:08.163Z",
+      "merged_at": "2026-02-07T23:58:08.163Z",
+      "closed_at": "2026-02-07T23:58:08.163Z",
+      "additions": 471,
+      "deletions": 242,
+      "files_changed": 15,
+      "comments": 12,
+      "review_comments": 17,
+      "reviews": 3,
+      "time_to_merge_hours": 5.9,
+      "time_to_first_review_hours": 5.7,
+      "repo": "mobile-app",
+      "labels": [
+        "refactor"
+      ]
+    },
+    {
+      "number": 128,
+      "title": "Feature: Role-based access control system",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "state": "merged",
+      "created_at": "2026-02-03T22:09:38.163Z",
+      "merged_at": "2026-02-06T13:45:38.163Z",
+      "closed_at": "2026-02-06T13:45:38.163Z",
+      "additions": 685,
+      "deletions": 191,
+      "files_changed": 20,
+      "comments": 9,
+      "review_comments": 18,
+      "reviews": 3,
+      "time_to_merge_hours": 63.6,
+      "time_to_first_review_hours": 10.3,
+      "repo": "mobile-app",
+      "labels": [
+        "enhancement",
+        "bug",
+        "bug"
+      ]
+    },
+    {
+      "number": 125,
+      "title": "Refactor: Database query optimization",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "state": "merged",
+      "created_at": "2026-02-02T17:49:31.163Z",
+      "merged_at": "2026-02-05T13:37:31.163Z",
+      "closed_at": "2026-02-05T13:37:31.163Z",
+      "additions": 339,
+      "deletions": 331,
+      "files_changed": 20,
+      "comments": 8,
+      "review_comments": 4,
+      "reviews": 1,
+      "time_to_merge_hours": 67.8,
+      "time_to_first_review_hours": 5.4,
+      "repo": "infra-config",
+      "labels": [
+        "security",
+        "enhancement"
+      ]
+    },
+    {
+      "number": 120,
+      "title": "Feature: Webhook integration framework",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "merged",
+      "created_at": "2026-02-01T21:23:41.163Z",
+      "merged_at": "2026-02-02T23:41:41.163Z",
+      "closed_at": "2026-02-02T23:41:41.163Z",
+      "additions": 472,
+      "deletions": 89,
+      "files_changed": 9,
+      "comments": 0,
+      "review_comments": 5,
+      "reviews": 2,
+      "time_to_merge_hours": 26.3,
+      "time_to_first_review_hours": 3.8,
+      "repo": "infra-config",
+      "labels": [
+        "feature"
+      ]
+    },
+    {
+      "number": 101,
+      "title": "Feature: Role-based access control system",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "state": "merged",
+      "created_at": "2026-01-30T16:34:51.163Z",
+      "merged_at": "2026-02-02T16:34:51.163Z",
+      "closed_at": "2026-02-02T16:34:51.163Z",
+      "additions": 691,
+      "deletions": 35,
+      "files_changed": 1,
+      "comments": 11,
+      "review_comments": 19,
+      "reviews": 3,
+      "time_to_merge_hours": 72,
+      "time_to_first_review_hours": 2.9,
+      "repo": "ml-pipeline",
+      "labels": [
+        "enhancement",
+        "bug"
+      ]
+    },
+    {
+      "number": 123,
+      "title": "Performance: Bundle optimization",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "state": "merged",
+      "created_at": "2026-01-28T01:48:13.163Z",
+      "merged_at": "2026-01-29T00:12:13.163Z",
+      "closed_at": "2026-01-29T00:12:13.163Z",
+      "additions": 786,
+      "deletions": 26,
+      "files_changed": 19,
+      "comments": 9,
+      "review_comments": 13,
+      "reviews": 5,
+      "time_to_merge_hours": 22.4,
+      "time_to_first_review_hours": 8.1,
+      "repo": "infra-config",
+      "labels": [
+        "documentation",
+        "bug"
+      ]
+    },
+    {
+      "number": 100,
+      "title": "Performance: Bundle optimization",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "merged",
+      "created_at": "2026-01-27T17:07:25.162Z",
+      "merged_at": "2026-01-28T10:07:25.162Z",
+      "closed_at": "2026-01-28T10:07:25.162Z",
+      "additions": 103,
+      "deletions": 230,
+      "files_changed": 21,
+      "comments": 12,
+      "review_comments": 9,
+      "reviews": 5,
+      "time_to_merge_hours": 17,
+      "time_to_first_review_hours": 10.7,
+      "repo": "ml-pipeline",
+      "labels": [
+        "security",
+        "security",
+        "security"
+      ]
+    },
+    {
+      "number": 127,
+      "title": "Performance: Bundle optimization",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "state": "merged",
+      "created_at": "2026-01-24T22:07:30.163Z",
+      "merged_at": "2026-01-27T16:31:30.163Z",
+      "closed_at": "2026-01-27T16:31:30.163Z",
+      "additions": 633,
+      "deletions": 298,
+      "files_changed": 14,
+      "comments": 10,
+      "review_comments": 14,
+      "reviews": 5,
+      "time_to_merge_hours": 66.4,
+      "time_to_first_review_hours": 11.7,
+      "repo": "mobile-app",
+      "labels": [
+        "security",
+        "bug",
+        "feature"
+      ]
+    },
+    {
+      "number": 118,
+      "title": "Refactor: Database query optimization",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "state": "closed",
+      "created_at": "2026-01-22T21:43:06.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 730,
+      "deletions": 372,
+      "files_changed": 10,
+      "comments": 7,
+      "review_comments": 3,
+      "reviews": 1,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 11.8,
+      "repo": "api-gateway",
+      "labels": [
+        "documentation",
+        "refactor"
+      ]
+    },
+    {
+      "number": 102,
+      "title": "Fix: Memory leak in data processing pipeline",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "closed",
+      "created_at": "2026-01-17T21:58:57.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 161,
+      "deletions": 267,
+      "files_changed": 8,
+      "comments": 15,
+      "review_comments": 17,
+      "reviews": 1,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 4.3,
+      "repo": "ml-pipeline",
+      "labels": [
+        "performance",
+        "security",
+        "dependencies"
+      ]
+    },
+    {
+      "number": 122,
+      "title": "Fix: Timezone handling improvements",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "merged",
+      "created_at": "2026-01-17T01:59:53.163Z",
+      "merged_at": "2026-01-20T00:29:53.163Z",
+      "closed_at": "2026-01-20T00:29:53.163Z",
+      "additions": 487,
+      "deletions": 174,
+      "files_changed": 15,
+      "comments": 11,
+      "review_comments": 15,
+      "reviews": 4,
+      "time_to_merge_hours": 70.5,
+      "time_to_first_review_hours": 8.7,
+      "repo": "web-platform",
+      "labels": [
+        "documentation",
+        "documentation"
+      ]
+    },
+    {
+      "number": 113,
+      "title": "Fix: Payment processing edge cases",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "state": "merged",
+      "created_at": "2026-01-11T03:56:51.163Z",
+      "merged_at": "2026-01-11T22:44:51.163Z",
+      "closed_at": "2026-01-11T22:44:51.163Z",
+      "additions": 192,
+      "deletions": 384,
+      "files_changed": 25,
+      "comments": 8,
+      "review_comments": 9,
+      "reviews": 4,
+      "time_to_merge_hours": 18.8,
+      "time_to_first_review_hours": 6.6,
+      "repo": "web-platform",
+      "labels": [
+        "dependencies",
+        "security",
+        "performance"
+      ]
+    },
+    {
+      "number": 107,
+      "title": "Feature: Webhook integration framework",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "state": "merged",
+      "created_at": "2025-12-29T20:56:13.163Z",
+      "merged_at": "2025-12-30T19:44:13.163Z",
+      "closed_at": "2025-12-30T19:44:13.163Z",
+      "additions": 590,
+      "deletions": 333,
+      "files_changed": 12,
+      "comments": 0,
+      "review_comments": 19,
+      "reviews": 1,
+      "time_to_merge_hours": 22.8,
+      "time_to_first_review_hours": 1.3,
+      "repo": "api-gateway",
+      "labels": [
+        "enhancement",
+        "enhancement"
+      ]
+    },
+    {
+      "number": 109,
+      "title": "Performance: Bundle optimization",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "state": "merged",
+      "created_at": "2025-12-29T20:14:54.163Z",
+      "merged_at": "2025-12-31T22:44:54.163Z",
+      "closed_at": "2025-12-31T22:44:54.163Z",
+      "additions": 664,
+      "deletions": 233,
+      "files_changed": 2,
+      "comments": 5,
+      "review_comments": 5,
+      "reviews": 3,
+      "time_to_merge_hours": 50.5,
+      "time_to_first_review_hours": 3,
+      "repo": "mobile-app",
+      "labels": [
+        "security",
+        "enhancement",
+        "security"
+      ]
+    },
+    {
+      "number": 105,
+      "title": "Feature: Real-time WebSocket notifications",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "closed",
+      "created_at": "2025-12-29T03:26:45.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 36,
+      "deletions": 33,
+      "files_changed": 4,
+      "comments": 8,
+      "review_comments": 19,
+      "reviews": 4,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 9.4,
+      "repo": "web-platform",
+      "labels": [
+        "bug",
+        "dependencies"
+      ]
+    },
+    {
+      "number": 119,
+      "title": "Feature: Dark mode theme support",
+      "author": "jamesw",
+      "author_avatar": "https://avatars.githubusercontent.com/u/5?v=4",
+      "state": "merged",
+      "created_at": "2025-12-26T14:05:47.163Z",
+      "merged_at": "2025-12-26T15:11:47.163Z",
+      "closed_at": "2025-12-26T15:11:47.163Z",
+      "additions": 797,
+      "deletions": 247,
+      "files_changed": 18,
+      "comments": 12,
+      "review_comments": 7,
+      "reviews": 5,
+      "time_to_merge_hours": 1.1,
+      "time_to_first_review_hours": 3.6,
+      "repo": "mobile-app",
+      "labels": [
+        "bug",
+        "feature"
+      ]
+    },
+    {
+      "number": 129,
+      "title": "Feature: Dark mode theme support",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "closed",
+      "created_at": "2025-12-26T00:05:14.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 432,
+      "deletions": 120,
+      "files_changed": 22,
+      "comments": 14,
+      "review_comments": 12,
+      "reviews": 2,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 6.9,
+      "repo": "web-platform",
+      "labels": [
+        "refactor"
+      ]
+    },
+    {
+      "number": 121,
+      "title": "Feature: Webhook integration framework",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "merged",
+      "created_at": "2025-12-25T21:20:10.163Z",
+      "merged_at": "2025-12-26T14:32:10.163Z",
+      "closed_at": "2025-12-26T14:32:10.163Z",
+      "additions": 781,
+      "deletions": 245,
+      "files_changed": 19,
+      "comments": 3,
+      "review_comments": 13,
+      "reviews": 1,
+      "time_to_merge_hours": 17.2,
+      "time_to_first_review_hours": 1.4,
+      "repo": "infra-config",
+      "labels": [
+        "dependencies"
+      ]
+    },
+    {
+      "number": 111,
+      "title": "Feature: Dark mode theme support",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "state": "merged",
+      "created_at": "2025-12-25T17:47:29.163Z",
+      "merged_at": "2025-12-25T18:59:29.163Z",
+      "closed_at": "2025-12-25T18:59:29.163Z",
+      "additions": 661,
+      "deletions": 52,
+      "files_changed": 22,
+      "comments": 2,
+      "review_comments": 15,
+      "reviews": 2,
+      "time_to_merge_hours": 1.2,
+      "time_to_first_review_hours": 9.7,
+      "repo": "infra-config",
+      "labels": [
+        "security"
+      ]
+    },
+    {
+      "number": 106,
+      "title": "Feature: Webhook integration framework",
+      "author": "sarahdev",
+      "author_avatar": "https://avatars.githubusercontent.com/u/2?v=4",
+      "state": "closed",
+      "created_at": "2025-12-23T02:44:54.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 306,
+      "deletions": 92,
+      "files_changed": 16,
+      "comments": 10,
+      "review_comments": 13,
+      "reviews": 3,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 1.7,
+      "repo": "api-gateway",
+      "labels": [
+        "dependencies",
+        "dependencies",
+        "feature"
+      ]
+    },
+    {
+      "number": 116,
+      "title": "Feature: User authentication with OAuth",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "state": "open",
+      "created_at": "2025-12-05T17:15:48.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 300,
+      "deletions": 38,
+      "files_changed": 19,
+      "comments": 2,
+      "review_comments": 7,
+      "reviews": 1,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 1.7,
+      "repo": "infra-config",
+      "labels": [
+        "dependencies",
+        "performance"
+      ]
+    },
+    {
+      "number": 110,
+      "title": "Fix: Race condition in concurrent requests",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "closed",
+      "created_at": "2025-12-02T21:15:43.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 613,
+      "deletions": 245,
+      "files_changed": 10,
+      "comments": 10,
+      "review_comments": 6,
+      "reviews": 1,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 1.8,
+      "repo": "api-gateway",
+      "labels": [
+        "performance",
+        "performance"
+      ]
+    },
+    {
+      "number": 108,
+      "title": "Fix: Timezone handling improvements",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "state": "merged",
+      "created_at": "2025-11-29T22:54:37.163Z",
+      "merged_at": "2025-12-01T21:48:37.163Z",
+      "closed_at": "2025-12-01T21:48:37.163Z",
+      "additions": 600,
+      "deletions": 94,
+      "files_changed": 15,
+      "comments": 10,
+      "review_comments": 13,
+      "reviews": 1,
+      "time_to_merge_hours": 46.9,
+      "time_to_first_review_hours": 9.4,
+      "repo": "mobile-app",
+      "labels": [
+        "documentation",
+        "dependencies",
+        "performance"
+      ]
+    },
+    {
+      "number": 104,
+      "title": "Fix: Timezone handling improvements",
+      "author": "emilyz",
+      "author_avatar": "https://avatars.githubusercontent.com/u/4?v=4",
+      "state": "merged",
+      "created_at": "2025-11-25T03:49:17.163Z",
+      "merged_at": "2025-11-26T14:19:17.163Z",
+      "closed_at": "2025-11-26T14:19:17.163Z",
+      "additions": 729,
+      "deletions": 223,
+      "files_changed": 23,
+      "comments": 10,
+      "review_comments": 14,
+      "reviews": 2,
+      "time_to_merge_hours": 34.5,
+      "time_to_first_review_hours": 0.6,
+      "repo": "infra-config",
+      "labels": [
+        "security",
+        "dependencies"
+      ]
+    },
+    {
+      "number": 126,
+      "title": "Feature: Dark mode theme support",
+      "author": "mikejones",
+      "author_avatar": "https://avatars.githubusercontent.com/u/3?v=4",
+      "state": "merged",
+      "created_at": "2025-11-20T22:27:06.163Z",
+      "merged_at": "2025-11-22T07:39:06.163Z",
+      "closed_at": "2025-11-22T07:39:06.163Z",
+      "additions": 482,
+      "deletions": 150,
+      "files_changed": 6,
+      "comments": 1,
+      "review_comments": 2,
+      "reviews": 4,
+      "time_to_merge_hours": 33.2,
+      "time_to_first_review_hours": 5.8,
+      "repo": "mobile-app",
+      "labels": [
+        "performance",
+        "feature"
+      ]
+    },
+    {
+      "number": 103,
+      "title": "Fix: Race condition in concurrent requests",
+      "author": "priyak",
+      "author_avatar": "https://avatars.githubusercontent.com/u/6?v=4",
+      "state": "merged",
+      "created_at": "2025-11-20T16:40:39.163Z",
+      "merged_at": "2025-11-21T21:34:39.163Z",
+      "closed_at": "2025-11-21T21:34:39.163Z",
+      "additions": 74,
+      "deletions": 312,
+      "files_changed": 7,
+      "comments": 9,
+      "review_comments": 7,
+      "reviews": 5,
+      "time_to_merge_hours": 28.9,
+      "time_to_first_review_hours": 9.3,
+      "repo": "mobile-app",
+      "labels": [
+        "enhancement",
+        "bug"
+      ]
+    },
+    {
+      "number": 112,
+      "title": "Feature: File upload with drag and drop",
+      "author": "alexchen",
+      "author_avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+      "state": "open",
+      "created_at": "2025-11-18T18:36:37.163Z",
+      "merged_at": null,
+      "closed_at": null,
+      "additions": 225,
+      "deletions": 59,
+      "files_changed": 8,
+      "comments": 7,
+      "review_comments": 17,
+      "reviews": 4,
+      "time_to_merge_hours": null,
+      "time_to_first_review_hours": 11.9,
+      "repo": "api-gateway",
+      "labels": [
+        "enhancement",
+        "bug"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "number": 200,
+      "title": "chore: update dependencies to latest versions",
+      "author": "jamesw",
+      "state": "closed",
+      "created_at": "2026-01-04T17:08:06.163Z",
+      "closed_at": "2026-01-04T23:26:06.163Z",
+      "labels": [
+        "performance",
+        "bug",
+        "enhancement"
+      ],
+      "comments": 12,
+      "time_to_close_hours": 6.3,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 201,
+      "title": "fix: resolve memory leak in data processing",
+      "author": "alexchen",
+      "state": "closed",
+      "created_at": "2025-12-16T23:04:08.163Z",
+      "closed_at": "2025-12-19T14:58:08.163Z",
+      "labels": [
+        "bug",
+        "refactor",
+        "security"
+      ],
+      "comments": 10,
+      "time_to_close_hours": 63.9,
+      "repo": "ml-pipeline"
+    },
+    {
+      "number": 202,
+      "title": "fix: resolve memory leak in data processing",
+      "author": "priyak",
+      "state": "closed",
+      "created_at": "2026-01-20T03:36:07.163Z",
+      "closed_at": "2026-01-23T17:48:07.163Z",
+      "labels": [
+        "bug"
+      ],
+      "comments": 7,
+      "time_to_close_hours": 86.2,
+      "repo": "infra-config"
+    },
+    {
+      "number": 203,
+      "title": "feat: add webhook integration support",
+      "author": "mikejones",
+      "state": "closed",
+      "created_at": "2026-01-31T16:43:34.163Z",
+      "closed_at": "2026-02-05T00:07:34.163Z",
+      "labels": [
+        "security",
+        "dependencies"
+      ],
+      "comments": 8,
+      "time_to_close_hours": 103.4,
+      "repo": "mobile-app"
+    },
+    {
+      "number": 204,
+      "title": "feat: add dark mode support",
+      "author": "jamesw",
+      "state": "closed",
+      "created_at": "2026-01-29T18:18:33.163Z",
+      "closed_at": "2026-01-30T03:06:33.163Z",
+      "labels": [
+        "refactor",
+        "performance"
+      ],
+      "comments": 2,
+      "time_to_close_hours": 8.8,
+      "repo": "infra-config"
+    },
+    {
+      "number": 205,
+      "title": "feat: add dark mode support",
+      "author": "priyak",
+      "state": "closed",
+      "created_at": "2026-02-08T03:32:18.163Z",
+      "closed_at": "2026-02-11T18:38:18.163Z",
+      "labels": [
+        "documentation",
+        "performance"
+      ],
+      "comments": 0,
+      "time_to_close_hours": 87.1,
+      "repo": "web-platform"
+    },
+    {
+      "number": 206,
+      "title": "feat: add real-time notification system",
+      "author": "mikejones",
+      "state": "closed",
+      "created_at": "2026-01-19T21:56:13.163Z",
+      "closed_at": "2026-01-22T10:32:13.163Z",
+      "labels": [
+        "performance"
+      ],
+      "comments": 1,
+      "time_to_close_hours": 60.6,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 207,
+      "title": "fix: resolve memory leak in data processing",
+      "author": "priyak",
+      "state": "open",
+      "created_at": "2025-12-30T02:49:17.163Z",
+      "closed_at": null,
+      "labels": [
+        "documentation",
+        "refactor",
+        "refactor"
+      ],
+      "comments": 5,
+      "time_to_close_hours": null,
+      "repo": "infra-config"
+    },
+    {
+      "number": 208,
+      "title": "refactor: migrate to new state management",
+      "author": "jamesw",
+      "state": "open",
+      "created_at": "2025-12-28T00:20:34.163Z",
+      "closed_at": null,
+      "labels": [
+        "refactor",
+        "refactor"
+      ],
+      "comments": 8,
+      "time_to_close_hours": null,
+      "repo": "mobile-app"
+    },
+    {
+      "number": 209,
+      "title": "feat: add dark mode support",
+      "author": "emilyz",
+      "state": "open",
+      "created_at": "2025-12-11T19:33:43.163Z",
+      "closed_at": null,
+      "labels": [
+        "performance",
+        "bug",
+        "dependencies"
+      ],
+      "comments": 4,
+      "time_to_close_hours": null,
+      "repo": "ml-pipeline"
+    },
+    {
+      "number": 210,
+      "title": "fix: handle edge case in payment processing",
+      "author": "jamesw",
+      "state": "closed",
+      "created_at": "2026-01-07T03:15:47.163Z",
+      "closed_at": "2026-01-10T17:27:47.163Z",
+      "labels": [
+        "feature"
+      ],
+      "comments": 5,
+      "time_to_close_hours": 86.2,
+      "repo": "web-platform"
+    },
+    {
+      "number": 211,
+      "title": "fix: resolve memory leak in data processing",
+      "author": "priyak",
+      "state": "closed",
+      "created_at": "2025-12-20T15:59:55.163Z",
+      "closed_at": "2025-12-24T08:05:55.163Z",
+      "labels": [
+        "feature"
+      ],
+      "comments": 12,
+      "time_to_close_hours": 88.1,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 212,
+      "title": "docs: update API documentation",
+      "author": "emilyz",
+      "state": "closed",
+      "created_at": "2025-12-04T16:15:39.163Z",
+      "closed_at": "2025-12-05T21:39:39.163Z",
+      "labels": [
+        "enhancement",
+        "enhancement",
+        "performance"
+      ],
+      "comments": 0,
+      "time_to_close_hours": 29.4,
+      "repo": "ml-pipeline"
+    },
+    {
+      "number": 213,
+      "title": "feat: add webhook integration support",
+      "author": "priyak",
+      "state": "open",
+      "created_at": "2026-01-03T16:21:52.163Z",
+      "closed_at": null,
+      "labels": [
+        "performance",
+        "dependencies",
+        "enhancement"
+      ],
+      "comments": 3,
+      "time_to_close_hours": null,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 214,
+      "title": "feat: implement file upload with progress tracking",
+      "author": "mikejones",
+      "state": "closed",
+      "created_at": "2026-01-30T16:54:25.163Z",
+      "closed_at": "2026-01-31T04:06:25.163Z",
+      "labels": [
+        "performance"
+      ],
+      "comments": 9,
+      "time_to_close_hours": 11.2,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 215,
+      "title": "docs: update API documentation",
+      "author": "sarahdev",
+      "state": "open",
+      "created_at": "2026-01-09T15:26:46.163Z",
+      "closed_at": null,
+      "labels": [
+        "enhancement"
+      ],
+      "comments": 12,
+      "time_to_close_hours": null,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 216,
+      "title": "refactor: migrate to new state management",
+      "author": "alexchen",
+      "state": "closed",
+      "created_at": "2026-01-21T21:35:05.163Z",
+      "closed_at": "2026-01-25T17:11:05.163Z",
+      "labels": [
+        "performance",
+        "performance"
+      ],
+      "comments": 10,
+      "time_to_close_hours": 91.6,
+      "repo": "mobile-app"
+    },
+    {
+      "number": 217,
+      "title": "perf: optimize bundle size with code splitting",
+      "author": "emilyz",
+      "state": "closed",
+      "created_at": "2025-12-30T22:05:18.163Z",
+      "closed_at": "2025-12-31T05:35:18.163Z",
+      "labels": [
+        "documentation",
+        "dependencies",
+        "bug"
+      ],
+      "comments": 6,
+      "time_to_close_hours": 7.5,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 218,
+      "title": "feat: add export to CSV functionality",
+      "author": "emilyz",
+      "state": "open",
+      "created_at": "2025-11-24T04:10:44.163Z",
+      "closed_at": null,
+      "labels": [
+        "documentation",
+        "dependencies"
+      ],
+      "comments": 6,
+      "time_to_close_hours": null,
+      "repo": "api-gateway"
+    },
+    {
+      "number": 219,
+      "title": "docs: update API documentation",
+      "author": "jamesw",
+      "state": "closed",
+      "created_at": "2025-12-17T23:55:26.163Z",
+      "closed_at": "2025-12-21T10:31:26.163Z",
+      "labels": [
+        "feature",
+        "performance"
+      ],
+      "comments": 1,
+      "time_to_close_hours": 82.6,
+      "repo": "web-platform"
+    }
+  ],
+  "releases": [
+    {
+      "tag": "v3.3.3",
+      "name": "Release 3.7.20",
+      "published_at": "2025-12-11T14:24:39.164Z",
+      "author": "mikejones",
+      "repo": "web-platform",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v3.8.15",
+      "name": "Release 3.1.2",
+      "published_at": "2026-01-21T14:16:50.164Z",
+      "author": "alexchen",
+      "repo": "mobile-app",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v3.3.15",
+      "name": "Release 3.4.9",
+      "published_at": "2025-12-27T15:25:15.164Z",
+      "author": "sarahdev",
+      "repo": "mobile-app",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v3.1.4",
+      "name": "Release 3.8.7",
+      "published_at": "2026-01-26T02:45:18.164Z",
+      "author": "sarahdev",
+      "repo": "api-gateway",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v2.4.20",
+      "name": "Release 2.0.16",
+      "published_at": "2026-01-12T03:13:03.164Z",
+      "author": "sarahdev",
+      "repo": "api-gateway",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v2.4.9",
+      "name": "Release 2.2.15",
+      "published_at": "2025-12-05T15:40:48.164Z",
+      "author": "alexchen",
+      "repo": "infra-config",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v2.1.15",
+      "name": "Release 2.0.7",
+      "published_at": "2026-02-15T17:54:01.164Z",
+      "author": "mikejones",
+      "repo": "infra-config",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v2.7.2",
+      "name": "Release 2.6.20",
+      "published_at": "2025-12-06T14:06:30.164Z",
+      "author": "alexchen",
+      "repo": "ml-pipeline",
+      "is_prerelease": true
+    },
+    {
+      "tag": "v1.7.13",
+      "name": "Release 1.6.11",
+      "published_at": "2025-12-27T20:23:24.164Z",
+      "author": "sarahdev",
+      "repo": "infra-config",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v1.8.12",
+      "name": "Release 1.4.6",
+      "published_at": "2025-11-26T23:31:56.164Z",
+      "author": "mikejones",
+      "repo": "ml-pipeline",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v1.6.18",
+      "name": "Release 1.6.8",
+      "published_at": "2026-01-04T18:37:47.164Z",
+      "author": "sarahdev",
+      "repo": "infra-config",
+      "is_prerelease": false
+    },
+    {
+      "tag": "v1.5.13",
+      "name": "Release 1.5.15",
+      "published_at": "2025-11-24T01:54:03.164Z",
+      "author": "mikejones",
+      "repo": "infra-config",
+      "is_prerelease": true
+    }
+  ],
+  "daily_activity": [
+    {
+      "date": "2025-11-18",
+      "commits": 3,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 2,
+      "issues_closed": 2,
+      "reviews": 6,
+      "additions": 54,
+      "deletions": 60
+    },
+    {
+      "date": "2025-11-19",
+      "commits": 7,
+      "prs_opened": 3,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 3,
+      "reviews": 2,
+      "additions": 638,
+      "deletions": 92
+    },
+    {
+      "date": "2025-11-20",
+      "commits": 2,
+      "prs_opened": 4,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 2,
+      "reviews": 2,
+      "additions": 766,
+      "deletions": 399
+    },
+    {
+      "date": "2025-11-21",
+      "commits": 15,
+      "prs_opened": 3,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 5,
+      "additions": 153,
+      "deletions": 295
+    },
+    {
+      "date": "2025-11-22",
+      "commits": 1,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 10,
+      "deletions": 118
+    },
+    {
+      "date": "2025-11-23",
+      "commits": 3,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "reviews": 2,
+      "additions": 133,
+      "deletions": 88
+    },
+    {
+      "date": "2025-11-24",
+      "commits": 14,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 3,
+      "additions": 533,
+      "deletions": 148
+    },
+    {
+      "date": "2025-11-25",
+      "commits": 15,
+      "prs_opened": 4,
+      "prs_merged": 2,
+      "issues_opened": 3,
+      "issues_closed": 3,
+      "reviews": 3,
+      "additions": 543,
+      "deletions": 341
+    },
+    {
+      "date": "2025-11-26",
+      "commits": 6,
+      "prs_opened": 1,
+      "prs_merged": 3,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "reviews": 5,
+      "additions": 774,
+      "deletions": 218
+    },
+    {
+      "date": "2025-11-27",
+      "commits": 0,
+      "prs_opened": 3,
+      "prs_merged": 1,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 0,
+      "additions": 361,
+      "deletions": 187
+    },
+    {
+      "date": "2025-11-28",
+      "commits": 2,
+      "prs_opened": 3,
+      "prs_merged": 0,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 2,
+      "additions": 531,
+      "deletions": 377
+    },
+    {
+      "date": "2025-11-29",
+      "commits": 3,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "reviews": 0,
+      "additions": 8,
+      "deletions": 21
+    },
+    {
+      "date": "2025-11-30",
+      "commits": 3,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 128,
+      "deletions": 76
+    },
+    {
+      "date": "2025-12-01",
+      "commits": 0,
+      "prs_opened": 4,
+      "prs_merged": 2,
+      "issues_opened": 1,
+      "issues_closed": 3,
+      "reviews": 5,
+      "additions": 391,
+      "deletions": 338
+    },
+    {
+      "date": "2025-12-02",
+      "commits": 10,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 3,
+      "reviews": 5,
+      "additions": 371,
+      "deletions": 189
+    },
+    {
+      "date": "2025-12-03",
+      "commits": 15,
+      "prs_opened": 3,
+      "prs_merged": 2,
+      "issues_opened": 1,
+      "issues_closed": 4,
+      "reviews": 1,
+      "additions": 300,
+      "deletions": 317
+    },
+    {
+      "date": "2025-12-04",
+      "commits": 10,
+      "prs_opened": 2,
+      "prs_merged": 3,
+      "issues_opened": 4,
+      "issues_closed": 0,
+      "reviews": 6,
+      "additions": 431,
+      "deletions": 153
+    },
+    {
+      "date": "2025-12-05",
+      "commits": 9,
+      "prs_opened": 3,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 2,
+      "reviews": 6,
+      "additions": 605,
+      "deletions": 68
+    },
+    {
+      "date": "2025-12-06",
+      "commits": 4,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 2,
+      "additions": 237,
+      "deletions": 18
+    },
+    {
+      "date": "2025-12-07",
+      "commits": 0,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 0,
+      "additions": 115,
+      "deletions": 29
+    },
+    {
+      "date": "2025-12-08",
+      "commits": 7,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 0,
+      "additions": 716,
+      "deletions": 124
+    },
+    {
+      "date": "2025-12-09",
+      "commits": 3,
+      "prs_opened": 0,
+      "prs_merged": 3,
+      "issues_opened": 4,
+      "issues_closed": 3,
+      "reviews": 1,
+      "additions": 200,
+      "deletions": 91
+    },
+    {
+      "date": "2025-12-10",
+      "commits": 11,
+      "prs_opened": 3,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 0,
+      "additions": 141,
+      "deletions": 255
+    },
+    {
+      "date": "2025-12-11",
+      "commits": 13,
+      "prs_opened": 4,
+      "prs_merged": 1,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 3,
+      "additions": 315,
+      "deletions": 52
+    },
+    {
+      "date": "2025-12-12",
+      "commits": 13,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 2,
+      "issues_closed": 4,
+      "reviews": 6,
+      "additions": 13,
+      "deletions": 360
+    },
+    {
+      "date": "2025-12-13",
+      "commits": 1,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 2,
+      "additions": 219,
+      "deletions": 14
+    },
+    {
+      "date": "2025-12-14",
+      "commits": 2,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 103,
+      "deletions": 61
+    },
+    {
+      "date": "2025-12-15",
+      "commits": 13,
+      "prs_opened": 2,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 6,
+      "additions": 462,
+      "deletions": 21
+    },
+    {
+      "date": "2025-12-16",
+      "commits": 6,
+      "prs_opened": 1,
+      "prs_merged": 3,
+      "issues_opened": 0,
+      "issues_closed": 3,
+      "reviews": 3,
+      "additions": 191,
+      "deletions": 130
+    },
+    {
+      "date": "2025-12-17",
+      "commits": 14,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 4,
+      "additions": 635,
+      "deletions": 394
+    },
+    {
+      "date": "2025-12-18",
+      "commits": 8,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 3,
+      "reviews": 2,
+      "additions": 616,
+      "deletions": 394
+    },
+    {
+      "date": "2025-12-19",
+      "commits": 5,
+      "prs_opened": 3,
+      "prs_merged": 3,
+      "issues_opened": 5,
+      "issues_closed": 1,
+      "reviews": 2,
+      "additions": 538,
+      "deletions": 199
+    },
+    {
+      "date": "2025-12-20",
+      "commits": 0,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 0,
+      "additions": 176,
+      "deletions": 15
+    },
+    {
+      "date": "2025-12-21",
+      "commits": 4,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 2,
+      "additions": 92,
+      "deletions": 77
+    },
+    {
+      "date": "2025-12-22",
+      "commits": 2,
+      "prs_opened": 4,
+      "prs_merged": 2,
+      "issues_opened": 4,
+      "issues_closed": 1,
+      "reviews": 6,
+      "additions": 684,
+      "deletions": 272
+    },
+    {
+      "date": "2025-12-23",
+      "commits": 1,
+      "prs_opened": 0,
+      "prs_merged": 2,
+      "issues_opened": 1,
+      "issues_closed": 4,
+      "reviews": 5,
+      "additions": 754,
+      "deletions": 147
+    },
+    {
+      "date": "2025-12-24",
+      "commits": 9,
+      "prs_opened": 2,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 4,
+      "reviews": 0,
+      "additions": 360,
+      "deletions": 257
+    },
+    {
+      "date": "2025-12-25",
+      "commits": 2,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 6,
+      "additions": 697,
+      "deletions": 211
+    },
+    {
+      "date": "2025-12-26",
+      "commits": 2,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 3,
+      "issues_closed": 2,
+      "reviews": 1,
+      "additions": 660,
+      "deletions": 46
+    },
+    {
+      "date": "2025-12-27",
+      "commits": 3,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 57,
+      "deletions": 14
+    },
+    {
+      "date": "2025-12-28",
+      "commits": 3,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 169,
+      "deletions": 77
+    },
+    {
+      "date": "2025-12-29",
+      "commits": 4,
+      "prs_opened": 3,
+      "prs_merged": 0,
+      "issues_opened": 2,
+      "issues_closed": 3,
+      "reviews": 0,
+      "additions": 225,
+      "deletions": 162
+    },
+    {
+      "date": "2025-12-30",
+      "commits": 8,
+      "prs_opened": 2,
+      "prs_merged": 3,
+      "issues_opened": 5,
+      "issues_closed": 3,
+      "reviews": 5,
+      "additions": 717,
+      "deletions": 55
+    },
+    {
+      "date": "2025-12-31",
+      "commits": 2,
+      "prs_opened": 2,
+      "prs_merged": 1,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 5,
+      "additions": 149,
+      "deletions": 73
+    },
+    {
+      "date": "2026-01-01",
+      "commits": 9,
+      "prs_opened": 2,
+      "prs_merged": 1,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 2,
+      "additions": 28,
+      "deletions": 22
+    },
+    {
+      "date": "2026-01-02",
+      "commits": 5,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 4,
+      "reviews": 6,
+      "additions": 642,
+      "deletions": 339
+    },
+    {
+      "date": "2026-01-03",
+      "commits": 1,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 0,
+      "additions": 181,
+      "deletions": 40
+    },
+    {
+      "date": "2026-01-04",
+      "commits": 4,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 106,
+      "deletions": 42
+    },
+    {
+      "date": "2026-01-05",
+      "commits": 5,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 4,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 80,
+      "deletions": 180
+    },
+    {
+      "date": "2026-01-06",
+      "commits": 2,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 6,
+      "additions": 698,
+      "deletions": 28
+    },
+    {
+      "date": "2026-01-07",
+      "commits": 5,
+      "prs_opened": 1,
+      "prs_merged": 2,
+      "issues_opened": 2,
+      "issues_closed": 4,
+      "reviews": 6,
+      "additions": 450,
+      "deletions": 183
+    },
+    {
+      "date": "2026-01-08",
+      "commits": 0,
+      "prs_opened": 3,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 3,
+      "reviews": 6,
+      "additions": 233,
+      "deletions": 119
+    },
+    {
+      "date": "2026-01-09",
+      "commits": 1,
+      "prs_opened": 1,
+      "prs_merged": 2,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 77,
+      "deletions": 209
+    },
+    {
+      "date": "2026-01-10",
+      "commits": 3,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 110,
+      "deletions": 49
+    },
+    {
+      "date": "2026-01-11",
+      "commits": 1,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 72,
+      "deletions": 96
+    },
+    {
+      "date": "2026-01-12",
+      "commits": 1,
+      "prs_opened": 2,
+      "prs_merged": 1,
+      "issues_opened": 5,
+      "issues_closed": 4,
+      "reviews": 1,
+      "additions": 474,
+      "deletions": 38
+    },
+    {
+      "date": "2026-01-13",
+      "commits": 2,
+      "prs_opened": 2,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 4,
+      "reviews": 3,
+      "additions": 273,
+      "deletions": 58
+    },
+    {
+      "date": "2026-01-14",
+      "commits": 10,
+      "prs_opened": 4,
+      "prs_merged": 2,
+      "issues_opened": 4,
+      "issues_closed": 3,
+      "reviews": 2,
+      "additions": 646,
+      "deletions": 349
+    },
+    {
+      "date": "2026-01-15",
+      "commits": 4,
+      "prs_opened": 1,
+      "prs_merged": 2,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "reviews": 5,
+      "additions": 634,
+      "deletions": 309
+    },
+    {
+      "date": "2026-01-16",
+      "commits": 8,
+      "prs_opened": 0,
+      "prs_merged": 3,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 0,
+      "additions": 367,
+      "deletions": 174
+    },
+    {
+      "date": "2026-01-17",
+      "commits": 4,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 95,
+      "deletions": 17
+    },
+    {
+      "date": "2026-01-18",
+      "commits": 2,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 0,
+      "additions": 45,
+      "deletions": 19
+    },
+    {
+      "date": "2026-01-19",
+      "commits": 8,
+      "prs_opened": 2,
+      "prs_merged": 2,
+      "issues_opened": 5,
+      "issues_closed": 0,
+      "reviews": 3,
+      "additions": 374,
+      "deletions": 160
+    },
+    {
+      "date": "2026-01-20",
+      "commits": 3,
+      "prs_opened": 2,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 0,
+      "additions": 162,
+      "deletions": 276
+    },
+    {
+      "date": "2026-01-21",
+      "commits": 14,
+      "prs_opened": 4,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 0,
+      "additions": 736,
+      "deletions": 63
+    },
+    {
+      "date": "2026-01-22",
+      "commits": 0,
+      "prs_opened": 3,
+      "prs_merged": 2,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 5,
+      "additions": 107,
+      "deletions": 191
+    },
+    {
+      "date": "2026-01-23",
+      "commits": 11,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 5,
+      "issues_closed": 3,
+      "reviews": 3,
+      "additions": 541,
+      "deletions": 95
+    },
+    {
+      "date": "2026-01-24",
+      "commits": 4,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 9,
+      "deletions": 74
+    },
+    {
+      "date": "2026-01-25",
+      "commits": 3,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 80,
+      "deletions": 42
+    },
+    {
+      "date": "2026-01-26",
+      "commits": 11,
+      "prs_opened": 1,
+      "prs_merged": 3,
+      "issues_opened": 3,
+      "issues_closed": 4,
+      "reviews": 2,
+      "additions": 405,
+      "deletions": 240
+    },
+    {
+      "date": "2026-01-27",
+      "commits": 7,
+      "prs_opened": 4,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 2,
+      "reviews": 2,
+      "additions": 725,
+      "deletions": 274
+    },
+    {
+      "date": "2026-01-28",
+      "commits": 4,
+      "prs_opened": 2,
+      "prs_merged": 2,
+      "issues_opened": 4,
+      "issues_closed": 1,
+      "reviews": 2,
+      "additions": 381,
+      "deletions": 214
+    },
+    {
+      "date": "2026-01-29",
+      "commits": 10,
+      "prs_opened": 4,
+      "prs_merged": 0,
+      "issues_opened": 5,
+      "issues_closed": 1,
+      "reviews": 2,
+      "additions": 181,
+      "deletions": 203
+    },
+    {
+      "date": "2026-01-30",
+      "commits": 9,
+      "prs_opened": 2,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 4,
+      "reviews": 5,
+      "additions": 415,
+      "deletions": 154
+    },
+    {
+      "date": "2026-01-31",
+      "commits": 2,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 2,
+      "additions": 116,
+      "deletions": 76
+    },
+    {
+      "date": "2026-02-01",
+      "commits": 3,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 1,
+      "additions": 142,
+      "deletions": 35
+    },
+    {
+      "date": "2026-02-02",
+      "commits": 12,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 2,
+      "issues_closed": 4,
+      "reviews": 0,
+      "additions": 164,
+      "deletions": 37
+    },
+    {
+      "date": "2026-02-03",
+      "commits": 8,
+      "prs_opened": 1,
+      "prs_merged": 3,
+      "issues_opened": 2,
+      "issues_closed": 2,
+      "reviews": 0,
+      "additions": 333,
+      "deletions": 295
+    },
+    {
+      "date": "2026-02-04",
+      "commits": 2,
+      "prs_opened": 2,
+      "prs_merged": 2,
+      "issues_opened": 4,
+      "issues_closed": 1,
+      "reviews": 6,
+      "additions": 674,
+      "deletions": 306
+    },
+    {
+      "date": "2026-02-05",
+      "commits": 0,
+      "prs_opened": 4,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 0,
+      "additions": 511,
+      "deletions": 128
+    },
+    {
+      "date": "2026-02-06",
+      "commits": 11,
+      "prs_opened": 2,
+      "prs_merged": 2,
+      "issues_opened": 5,
+      "issues_closed": 1,
+      "reviews": 5,
+      "additions": 797,
+      "deletions": 255
+    },
+    {
+      "date": "2026-02-07",
+      "commits": 2,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 0,
+      "issues_closed": 1,
+      "reviews": 0,
+      "additions": 20,
+      "deletions": 80
+    },
+    {
+      "date": "2026-02-08",
+      "commits": 1,
+      "prs_opened": 0,
+      "prs_merged": 1,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 0,
+      "additions": 41,
+      "deletions": 55
+    },
+    {
+      "date": "2026-02-09",
+      "commits": 11,
+      "prs_opened": 2,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 5,
+      "additions": 98,
+      "deletions": 395
+    },
+    {
+      "date": "2026-02-10",
+      "commits": 3,
+      "prs_opened": 3,
+      "prs_merged": 1,
+      "issues_opened": 5,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 463,
+      "deletions": 97
+    },
+    {
+      "date": "2026-02-11",
+      "commits": 8,
+      "prs_opened": 1,
+      "prs_merged": 2,
+      "issues_opened": 3,
+      "issues_closed": 1,
+      "reviews": 4,
+      "additions": 73,
+      "deletions": 57
+    },
+    {
+      "date": "2026-02-12",
+      "commits": 5,
+      "prs_opened": 4,
+      "prs_merged": 3,
+      "issues_opened": 4,
+      "issues_closed": 3,
+      "reviews": 3,
+      "additions": 701,
+      "deletions": 351
+    },
+    {
+      "date": "2026-02-13",
+      "commits": 3,
+      "prs_opened": 2,
+      "prs_merged": 2,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "reviews": 2,
+      "additions": 478,
+      "deletions": 204
+    },
+    {
+      "date": "2026-02-14",
+      "commits": 0,
+      "prs_opened": 1,
+      "prs_merged": 0,
+      "issues_opened": 1,
+      "issues_closed": 0,
+      "reviews": 1,
+      "additions": 200,
+      "deletions": 47
+    },
+    {
+      "date": "2026-02-15",
+      "commits": 2,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "issues_opened": 2,
+      "issues_closed": 0,
+      "reviews": 2,
+      "additions": 119,
+      "deletions": 88
+    },
+    {
+      "date": "2026-02-16",
+      "commits": 4,
+      "prs_opened": 2,
+      "prs_merged": 3,
+      "issues_opened": 0,
+      "issues_closed": 4,
+      "reviews": 0,
+      "additions": 363,
+      "deletions": 68
+    }
+  ],
+  "weekly_activity": [
+    {
+      "week_start": "2025-11-16",
+      "commits": 54,
+      "prs_opened": 14,
+      "prs_merged": 9,
+      "issues_opened": 5,
+      "issues_closed": 13,
+      "additions": 6371,
+      "deletions": 1347,
+      "active_contributors": 5
+    },
+    {
+      "week_start": "2025-11-23",
+      "commits": 69,
+      "prs_opened": 12,
+      "prs_merged": 13,
+      "issues_opened": 18,
+      "issues_closed": 3,
+      "additions": 1422,
+      "deletions": 3113,
+      "active_contributors": 5
+    },
+    {
+      "week_start": "2025-11-30",
+      "commits": 18,
+      "prs_opened": 7,
+      "prs_merged": 7,
+      "issues_opened": 9,
+      "issues_closed": 12,
+      "additions": 6523,
+      "deletions": 3823,
+      "active_contributors": 6
+    },
+    {
+      "week_start": "2025-12-07",
+      "commits": 41,
+      "prs_opened": 14,
+      "prs_merged": 9,
+      "issues_opened": 5,
+      "issues_closed": 13,
+      "additions": 7134,
+      "deletions": 695,
+      "active_contributors": 5
+    },
+    {
+      "week_start": "2025-12-14",
+      "commits": 69,
+      "prs_opened": 9,
+      "prs_merged": 6,
+      "issues_opened": 17,
+      "issues_closed": 15,
+      "additions": 2578,
+      "deletions": 1333,
+      "active_contributors": 2
+    },
+    {
+      "week_start": "2025-12-21",
+      "commits": 40,
+      "prs_opened": 14,
+      "prs_merged": 13,
+      "issues_opened": 7,
+      "issues_closed": 6,
+      "additions": 935,
+      "deletions": 2911,
+      "active_contributors": 3
+    },
+    {
+      "week_start": "2025-12-28",
+      "commits": 36,
+      "prs_opened": 13,
+      "prs_merged": 7,
+      "issues_opened": 12,
+      "issues_closed": 4,
+      "additions": 1807,
+      "deletions": 852,
+      "active_contributors": 5
+    },
+    {
+      "week_start": "2026-01-04",
+      "commits": 81,
+      "prs_opened": 5,
+      "prs_merged": 5,
+      "issues_opened": 18,
+      "issues_closed": 15,
+      "additions": 2949,
+      "deletions": 3503,
+      "active_contributors": 2
+    },
+    {
+      "week_start": "2026-01-11",
+      "commits": 44,
+      "prs_opened": 15,
+      "prs_merged": 9,
+      "issues_opened": 20,
+      "issues_closed": 10,
+      "additions": 1946,
+      "deletions": 478,
+      "active_contributors": 5
+    },
+    {
+      "week_start": "2026-01-18",
+      "commits": 83,
+      "prs_opened": 12,
+      "prs_merged": 9,
+      "issues_opened": 14,
+      "issues_closed": 14,
+      "additions": 2599,
+      "deletions": 726,
+      "active_contributors": 3
+    },
+    {
+      "week_start": "2026-01-25",
+      "commits": 72,
+      "prs_opened": 3,
+      "prs_merged": 15,
+      "issues_opened": 6,
+      "issues_closed": 18,
+      "additions": 6849,
+      "deletions": 3595,
+      "active_contributors": 6
+    },
+    {
+      "week_start": "2026-02-01",
+      "commits": 52,
+      "prs_opened": 12,
+      "prs_merged": 8,
+      "issues_opened": 18,
+      "issues_closed": 9,
+      "additions": 4791,
+      "deletions": 1184,
+      "active_contributors": 6
+    },
+    {
+      "week_start": "2026-02-08",
+      "commits": 73,
+      "prs_opened": 18,
+      "prs_merged": 11,
+      "issues_opened": 12,
+      "issues_closed": 8,
+      "additions": 7014,
+      "deletions": 2805,
+      "active_contributors": 3
+    },
+    {
+      "week_start": "2026-02-15",
+      "commits": 20,
+      "prs_opened": 9,
+      "prs_merged": 15,
+      "issues_opened": 18,
+      "issues_closed": 4,
+      "additions": 4402,
+      "deletions": 3527,
+      "active_contributors": 4
+    }
+  ],
+  "repositories": [
+    {
+      "name": "web-platform",
+      "full_name": "demo-org/web-platform",
+      "description": "Main web application platform",
+      "language": "TypeScript",
+      "stars": 234,
+      "forks": 45,
+      "open_issues": 14,
+      "total_commits": 769,
+      "total_prs": 39,
+      "avg_pr_merge_time_hours": 13.5,
+      "contributors_count": 3,
+      "last_commit_date": "2026-02-14T02:30:33.164Z",
+      "languages": {
+        "TypeScript": 45,
+        "JavaScript": 6,
+        "CSS": 11,
+        "Python": 17,
+        "Go": 15,
+        "Other": 4
+      }
+    },
+    {
+      "name": "api-gateway",
+      "full_name": "demo-org/api-gateway",
+      "description": "API gateway and routing service",
+      "language": "Go",
+      "stars": 156,
+      "forks": 32,
+      "open_issues": 6,
+      "total_commits": 565,
+      "total_prs": 63,
+      "avg_pr_merge_time_hours": 10.7,
+      "contributors_count": 5,
+      "last_commit_date": "2026-02-17T01:04:37.164Z",
+      "languages": {
+        "TypeScript": 67,
+        "JavaScript": 8,
+        "CSS": 13,
+        "Python": 11,
+        "Go": 5,
+        "Other": 1
+      }
+    },
+    {
+      "name": "mobile-app",
+      "full_name": "demo-org/mobile-app",
+      "description": "React Native mobile application",
+      "language": "TypeScript",
+      "stars": 89,
+      "forks": 12,
+      "open_issues": 12,
+      "total_commits": 407,
+      "total_prs": 97,
+      "avg_pr_merge_time_hours": 20.5,
+      "contributors_count": 2,
+      "last_commit_date": "2026-02-12T21:43:14.164Z",
+      "languages": {
+        "TypeScript": 63,
+        "JavaScript": 9,
+        "CSS": 11,
+        "Python": 10,
+        "Go": 12,
+        "Other": 5
+      }
+    },
+    {
+      "name": "ml-pipeline",
+      "full_name": "demo-org/ml-pipeline",
+      "description": "Machine learning data pipeline",
+      "language": "Python",
+      "stars": 312,
+      "forks": 67,
+      "open_issues": 9,
+      "total_commits": 104,
+      "total_prs": 57,
+      "avg_pr_merge_time_hours": 35.3,
+      "contributors_count": 2,
+      "last_commit_date": "2026-02-10T17:14:59.164Z",
+      "languages": {
+        "TypeScript": 58,
+        "JavaScript": 9,
+        "CSS": 8,
+        "Python": 19,
+        "Go": 8,
+        "Other": 6
+      }
+    },
+    {
+      "name": "infra-config",
+      "full_name": "demo-org/infra-config",
+      "description": "Infrastructure as code configurations",
+      "language": "HCL",
+      "stars": 45,
+      "forks": 8,
+      "open_issues": 9,
+      "total_commits": 254,
+      "total_prs": 34,
+      "avg_pr_merge_time_hours": 13.9,
+      "contributors_count": 2,
+      "last_commit_date": "2026-02-16T03:24:59.164Z",
+      "languages": {
+        "TypeScript": 67,
+        "JavaScript": 10,
+        "CSS": 6,
+        "Python": 14,
+        "Go": 15,
+        "Other": 5
+      }
+    }
+  ],
+  "dora": {
+    "deployment_frequency": {
+      "value": 7.2,
+      "unit": "per_week",
+      "rating": "high"
+    },
+    "lead_time_for_changes": {
+      "value_hours": 10.6,
+      "rating": "high"
+    },
+    "change_failure_rate": {
+      "value_percent": 11.5,
+      "rating": "medium"
+    },
+    "mean_time_to_recovery": {
+      "value_hours": 7.2,
+      "rating": "high"
+    }
+  },
+  "heatmap": [
+    {
+      "date": "2025-02-16",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-02-17",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-02-18",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-02-19",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-02-20",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-02-21",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-02-22",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-02-23",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-02-24",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-02-25",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2025-02-26",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-02-27",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-02-28",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-03-01",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-02",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-03",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-03-04",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-03-05",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-03-06",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-03-07",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-08",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-09",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-10",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-03-11",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-03-12",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-03-13",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-03-14",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-03-15",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-16",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-17",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-03-18",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-03-19",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-03-20",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-03-21",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-03-22",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-23",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-24",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-03-25",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-03-26",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-03-27",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-03-28",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-03-29",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-30",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-03-31",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-04-01",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-04-02",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-04-03",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-04-04",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-05",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-06",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-07",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-04-08",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-09",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-04-10",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-04-11",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2025-04-12",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-04-13",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-04-14",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-04-15",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-04-16",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-04-17",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-04-18",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-04-19",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-20",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-21",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-04-22",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-04-23",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-04-24",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-04-25",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-04-26",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-27",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-04-28",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-04-29",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-04-30",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-05-01",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-05-02",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-05-03",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-04",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-05",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-05-06",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-05-07",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-05-08",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-05-09",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-05-10",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-11",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-05-12",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-05-13",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-05-14",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-05-15",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-05-16",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-05-17",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-05-18",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-19",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-05-20",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-05-21",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-05-22",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-05-23",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-05-24",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-25",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-05-26",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-05-27",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-05-28",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-05-29",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-05-30",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-05-31",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-06-01",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-02",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-06-03",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-06-04",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-06-05",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-06-06",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-06-07",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-08",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-06-09",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-10",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-06-11",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-06-12",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-06-13",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-06-14",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-06-15",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-16",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-06-17",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-06-18",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-06-19",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-20",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-06-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-22",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-23",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-06-24",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-06-25",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-06-26",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-06-27",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-06-28",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-06-29",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-06-30",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-07-01",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-07-02",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-07-03",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-07-04",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-07-05",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-07-06",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-07",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-07-08",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-07-09",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-07-10",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-11",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-07-12",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-13",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-14",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-07-15",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-07-16",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-07-17",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-07-18",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-07-19",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-07-20",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-22",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-07-23",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-07-24",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-07-25",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-07-26",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-07-27",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-07-28",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-07-29",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-07-30",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-07-31",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-01",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-08-02",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-08-03",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-04",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-05",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-06",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-08-07",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-08-08",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-08-09",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-10",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-11",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-08-12",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-08-13",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-08-14",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-15",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-08-16",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-18",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-08-19",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-08-20",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-08-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-22",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-23",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-24",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-08-25",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-08-26",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-08-27",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-08-28",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-08-29",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-08-30",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-08-31",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-01",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-09-02",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-03",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-09-04",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-09-05",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-09-06",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-09-07",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-08",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-09-09",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-09-10",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-09-11",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-09-12",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-13",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-14",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-15",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-09-16",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-09-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-18",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2025-09-19",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2025-09-20",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-22",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-09-23",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-24",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-09-25",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-09-26",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-09-27",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-09-28",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-09-29",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-09-30",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-10-01",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-10-02",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-10-03",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-10-04",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-05",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-10-06",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-10-07",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-10-08",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-10-09",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-10-10",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-10-11",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-12",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-13",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2025-10-14",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-10-15",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-10-16",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-10-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-18",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-19",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-20",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-10-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-22",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-10-23",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-10-24",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-10-25",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-10-26",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-10-27",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-10-28",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2025-10-29",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-10-30",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-10-31",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-11-01",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-02",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-11-03",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-11-04",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-11-05",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-11-06",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-07",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2025-11-08",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-09",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-11-10",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-11",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-11-12",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-11-13",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-11-14",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2025-11-15",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-16",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-11-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-18",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-11-19",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-11-20",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-11-21",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-11-22",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-23",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-24",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-11-25",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2025-11-26",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-11-27",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-28",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2025-11-29",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-11-30",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-01",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-12-02",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-12-03",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2025-12-04",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2025-12-05",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2025-12-06",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-12-07",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-08",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2025-12-09",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-12-10",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2025-12-11",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-12-12",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2025-12-13",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-14",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-15",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-12-16",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-12-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-18",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2025-12-19",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-12-20",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-21",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-22",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2025-12-23",
+      "count": 18,
+      "level": 4
+    },
+    {
+      "date": "2025-12-24",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-25",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2025-12-26",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2025-12-27",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-28",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-29",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2025-12-30",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2025-12-31",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-01",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2026-01-02",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2026-01-03",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-04",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2026-01-05",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-06",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2026-01-07",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2026-01-08",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2026-01-09",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2026-01-10",
+      "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2026-01-11",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-12",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2026-01-13",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2026-01-14",
+      "count": 6,
+      "level": 2
+    },
+    {
+      "date": "2026-01-15",
+      "count": 14,
+      "level": 4
+    },
+    {
+      "date": "2026-01-16",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2026-01-17",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2026-01-18",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-19",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2026-01-20",
+      "count": 3,
+      "level": 1
+    },
+    {
+      "date": "2026-01-21",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2026-01-22",
+      "count": 11,
+      "level": 3
+    },
+    {
+      "date": "2026-01-23",
+      "count": 13,
+      "level": 4
+    },
+    {
+      "date": "2026-01-24",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-25",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-26",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2026-01-27",
+      "count": 7,
+      "level": 2
+    },
+    {
+      "date": "2026-01-28",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-01-29",
+      "count": 10,
+      "level": 3
+    },
+    {
+      "date": "2026-01-30",
+      "count": 8,
+      "level": 3
+    },
+    {
+      "date": "2026-01-31",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-01",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2026-02-02",
+      "count": 16,
+      "level": 4
+    },
+    {
+      "date": "2026-02-03",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-04",
+      "count": 12,
+      "level": 3
+    },
+    {
+      "date": "2026-02-05",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-06",
+      "count": 9,
+      "level": 3
+    },
+    {
+      "date": "2026-02-07",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2026-02-08",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-09",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-10",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2026-02-11",
+      "count": 17,
+      "level": 4
+    },
+    {
+      "date": "2026-02-12",
+      "count": 15,
+      "level": 4
+    },
+    {
+      "date": "2026-02-13",
+      "count": 5,
+      "level": 2
+    },
+    {
+      "date": "2026-02-14",
+      "count": 4,
+      "level": 2
+    },
+    {
+      "date": "2026-02-15",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-02-16",
+      "count": 4,
+      "level": 2
+    }
+  ],
+  "languages": [
+    {
+      "language": "TypeScript",
+      "percentage": 42.3,
+      "color": "#3178C6",
+      "bytes": 1245000
+    },
+    {
+      "language": "Python",
+      "percentage": 22.1,
+      "color": "#3572A5",
+      "bytes": 651000
+    },
+    {
+      "language": "Go",
+      "percentage": 15.7,
+      "color": "#00ADD8",
+      "bytes": 462000
+    },
+    {
+      "language": "JavaScript",
+      "percentage": 8.4,
+      "color": "#F7DF1E",
+      "bytes": 247000
+    },
+    {
+      "language": "CSS",
+      "percentage": 6.2,
+      "color": "#563D7C",
+      "bytes": 182000
+    },
+    {
+      "language": "HCL",
+      "percentage": 3.8,
+      "color": "#844FBA",
+      "bytes": 112000
+    },
+    {
+      "language": "Other",
+      "percentage": 1.5,
+      "color": "#6B7280",
+      "bytes": 44000
+    }
+  ]
+}

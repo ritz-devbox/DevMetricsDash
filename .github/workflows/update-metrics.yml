@@ -1,0 +1,92 @@
+name: 📊 Update DevMetricsDash
+
+on:
+  # Run on schedule (every day at 6 AM UTC)
+  schedule:
+    - cron: "0 6 * * *"
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+  # Run on push to main (to update dashboard)
+  push:
+    branches: [main]
+    paths:
+      - "config.yml"
+      - "scripts/**"
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  update-metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📦 Install root dependencies
+        run: npm ci
+
+      - name: 📦 Install dashboard dependencies
+        run: cd dashboard && npm ci
+
+      - name: 🔍 Fetch GitHub metrics
+        run: npx tsx scripts/fetch-metrics.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        continue-on-error: true
+
+      - name: 🎲 Generate sample data (fallback)
+        if: ${{ !hashFiles('data/metrics.json') }}
+        run: npx tsx scripts/generate-sample-data.ts
+
+      - name: 🎨 Generate SVG charts
+        run: npx tsx scripts/generate-svg-charts.ts
+
+      - name: 📝 Generate README
+        run: npx tsx scripts/generate-readme.ts
+
+      - name: 🏗️ Build dashboard
+        run: cd dashboard && npm run build
+
+      - name: 📋 Copy metrics to dashboard
+        run: |
+          mkdir -p dashboard/dist/data
+          cp data/metrics.json dashboard/dist/data/
+
+      - name: 💾 Commit updated files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "DevMetricsDash Bot"
+          git add data/ assets/ README.md
+          git diff --staged --quiet || git commit -m "📊 Update metrics — $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: 🚀 Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📦 Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/dist
+
+      - name: 🌐 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

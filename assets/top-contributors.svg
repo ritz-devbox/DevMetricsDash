@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="200" viewBox="0 0 840 200">
+  <defs>
+    <linearGradient id="contribGrad0" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="contribGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="contribGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="contribGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="contribGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#EC4899" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .title { font: 600 13px 'Segoe UI', system-ui, sans-serif; fill: #E6EDF3; }
+    .contrib-name { font: 600 11px 'Segoe UI', system-ui, sans-serif; fill: #E6EDF3; }
+    .contrib-stats { font: 400 9px 'Segoe UI', system-ui, sans-serif; fill: #8B949E; }
+    .contrib-value { font: 700 11px 'Segoe UI', system-ui, sans-serif; }
+  </style>
+
+  <rect width="840" height="200" rx="10" fill="#0D1117" stroke="#30363D" stroke-width="1"/>
+  <text x="15" y="22" class="title">👥 Top Contributors</text>
+  <circle cx="28" cy="52" r="10" fill="#8B5CF6" opacity="0.2"/>
+  <text x="28" y="56" text-anchor="middle" style="font: 600 10px sans-serif; fill: #8B5CF6;">A</text>
+  <text x="45" y="50" class="contrib-name">@alexchen</text>
+  <text x="45" y="62" class="contrib-stats">147 commits · 41 PRs · +21.6k/-6.6k</text>
+  <rect x="200" y="44" width="492.7840909090909" height="8" rx="4" fill="url(#contribGrad0)"/>
+  <text x="700.7840909090909" y="53" class="contrib-value" fill="#8B5CF6">147</text>
+  <circle cx="28" cy="82" r="10" fill="#06B6D4" opacity="0.2"/>
+  <text x="28" y="86" text-anchor="middle" style="font: 600 10px sans-serif; fill: #06B6D4;">S</text>
+  <text x="45" y="80" class="contrib-name">@sarahdev</text>
+  <text x="45" y="92" class="contrib-stats">37 commits · 43 PRs · +7.0k/-1.0k</text>
+  <rect x="200" y="74" width="124.0340909090909" height="8" rx="4" fill="url(#contribGrad1)"/>
+  <text x="332.0340909090909" y="83" class="contrib-value" fill="#06B6D4">37</text>
+  <circle cx="28" cy="112" r="10" fill="#10B981" opacity="0.2"/>
+  <text x="28" y="116" text-anchor="middle" style="font: 600 10px sans-serif; fill: #10B981;">M</text>
+  <text x="45" y="110" class="contrib-name">@mikejones</text>
+  <text x="45" y="122" class="contrib-stats">176 commits · 11 PRs · +15.7k/-5.9k</text>
+  <rect x="200" y="104" width="590" height="8" rx="4" fill="url(#contribGrad2)"/>
+  <text x="798" y="113" class="contrib-value" fill="#10B981">176</text>
+  <circle cx="28" cy="142" r="10" fill="#F59E0B" opacity="0.2"/>
+  <text x="28" y="146" text-anchor="middle" style="font: 600 10px sans-serif; fill: #F59E0B;">E</text>
+  <text x="45" y="140" class="contrib-name">@emilyz</text>
+  <text x="45" y="152" class="contrib-stats">54 commits · 29 PRs · +11.8k/-7.0k</text>
+  <rect x="200" y="134" width="181.02272727272728" height="8" rx="4" fill="url(#contribGrad3)"/>
+  <text x="389.02272727272725" y="143" class="contrib-value" fill="#F59E0B">54</text>
+  <circle cx="28" cy="172" r="10" fill="#EC4899" opacity="0.2"/>
+  <text x="28" y="176" text-anchor="middle" style="font: 600 10px sans-serif; fill: #EC4899;">J</text>
+  <text x="45" y="170" class="contrib-name">@jamesw</text>
+  <text x="45" y="182" class="contrib-stats">125 commits · 7 PRs · +7.1k/-2.4k</text>
+  <rect x="200" y="164" width="419.0340909090909" height="8" rx="4" fill="url(#contribGrad4)"/>
+  <text x="627.0340909090909" y="173" class="contrib-value" fill="#EC4899">125</text>
+</svg>

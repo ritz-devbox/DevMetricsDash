@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="160" viewBox="0 0 840 160">
+  <style>
+    .title { font: 600 13px 'Segoe UI', system-ui, sans-serif; fill: #E6EDF3; }
+    .metric-label { font: 400 11px 'Segoe UI', system-ui, sans-serif; fill: #8B949E; }
+    .metric-value { font: 700 18px 'Segoe UI', system-ui, sans-serif; }
+    .metric-rating { font: 600 9px 'Segoe UI', system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+
+  <rect width="840" height="160" rx="10" fill="#0D1117" stroke="#30363D" stroke-width="1"/>
+  <text x="15" y="22" class="title">🎯 DORA Metrics</text>
+  <text x="116.25" y="55" class="metric-value" text-anchor="middle" fill="#06B6D4">7.2/week</text>
+  <text x="116.25" y="75" class="metric-label" text-anchor="middle">Deployment Frequency</text>
+  <rect x="91.25" y="88" width="50" height="18" rx="9" fill="#06B6D4" opacity="0.15"/>
+  <text x="116.25" y="100" class="metric-rating" text-anchor="middle" fill="#06B6D4">high</text>
+  <line x1="217.5" y1="35" x2="217.5" y2="110" stroke="#30363D" stroke-width="0.5"/>
+  <text x="318.75" y="55" class="metric-value" text-anchor="middle" fill="#06B6D4">10.6h</text>
+  <text x="318.75" y="75" class="metric-label" text-anchor="middle">Lead Time for Changes</text>
+  <rect x="293.75" y="88" width="50" height="18" rx="9" fill="#06B6D4" opacity="0.15"/>
+  <text x="318.75" y="100" class="metric-rating" text-anchor="middle" fill="#06B6D4">high</text>
+  <line x1="420" y1="35" x2="420" y2="110" stroke="#30363D" stroke-width="0.5"/>
+  <text x="521.25" y="55" class="metric-value" text-anchor="middle" fill="#F59E0B">11.5%</text>
+  <text x="521.25" y="75" class="metric-label" text-anchor="middle">Change Failure Rate</text>
+  <rect x="496.25" y="88" width="50" height="18" rx="9" fill="#F59E0B" opacity="0.15"/>
+  <text x="521.25" y="100" class="metric-rating" text-anchor="middle" fill="#F59E0B">medium</text>
+  <line x1="622.5" y1="35" x2="622.5" y2="110" stroke="#30363D" stroke-width="0.5"/>
+  <text x="723.75" y="55" class="metric-value" text-anchor="middle" fill="#06B6D4">7.2h</text>
+  <text x="723.75" y="75" class="metric-label" text-anchor="middle">Mean Time to Recovery</text>
+  <rect x="698.75" y="88" width="50" height="18" rx="9" fill="#06B6D4" opacity="0.15"/>
+  <text x="723.75" y="100" class="metric-rating" text-anchor="middle" fill="#06B6D4">high</text>
+  <text x="420" y="145" text-anchor="middle" style="font: 400 9px sans-serif; fill: #484F58;">Based on DORA (DevOps Research and Assessment) industry benchmarks</text>
+</svg>
