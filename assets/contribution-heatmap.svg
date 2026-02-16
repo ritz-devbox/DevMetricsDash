@@ -29,7 +29,7 @@
   <text x="15" y="20" class="title">📊 Contribution Activity</text>
   <text x="825" y="20" class="subtitle" text-anchor="end">2,267 contributions · 258 active days</text>
   <text x="35" y="28" class="month-label">Feb</text>
-  <text x="63" y="28" class="month-label">Mar</text>
+  <text x="49" y="28" class="month-label">Mar</text>
   <text x="119" y="28" class="month-label">Apr</text>
   <text x="175" y="28" class="month-label">May</text>
   <text x="245" y="28" class="month-label">Jun</text>
@@ -37,7 +37,7 @@
   <text x="357" y="28" class="month-label">Aug</text>
   <text x="427" y="28" class="month-label">Sep</text>
   <text x="483" y="28" class="month-label">Oct</text>
-  <text x="553" y="28" class="month-label">Nov</text>
+  <text x="539" y="28" class="month-label">Nov</text>
   <text x="609" y="28" class="month-label">Dec</text>
   <text x="665" y="28" class="month-label">Jan</text>
   <text x="735" y="28" class="month-label">Feb</text>
