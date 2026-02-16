@@ -11,7 +11,7 @@ Open the repo → see your stats. Click through → explore the full interactive
 📊 Tracking 5 repositories · 6 contributors · 90 day window
 ```
 
-[![Update Metrics](https://github.com/demo-org/DevMetricsDash/actions/workflows/update-metrics.yml/badge.svg)](https://github.com/demo-org/DevMetricsDash/actions)
+[![Update Metrics](https://github.com/ritz-devbox/DevMetricsDash/actions/workflows/update-metrics.yml/badge.svg)](https://github.com/ritz-devbox/DevMetricsDash/actions)
 
 ---
 
@@ -77,7 +77,7 @@ Open the repo → see your stats. Click through → explore the full interactive
 
 <div align="center">
 
-### 📊 [View Full Interactive Dashboard →](https://demo-org.github.io/DevMetricsDash/)
+### 📊 [View Full Interactive Dashboard →](https://ritz-devbox.github.io/DevMetricsDash/)
 
 </div>
 
@@ -121,7 +121,7 @@ DevMetricsDash/
 ### 1. Clone & install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/DevMetricsDash.git
+git clone https://github.com/ritz-devbox/DevMetricsDash.git
 cd DevMetricsDash
 npm install
 cd dashboard && npm install && cd ..

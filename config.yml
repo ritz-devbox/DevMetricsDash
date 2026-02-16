@@ -6,7 +6,7 @@
 # ============================================================
 
 # GitHub username or organization
-owner: "your-github-username"
+owner: "ritz-devbox"
 
 # Repositories to track (leave empty to track all public repos)
 repositories:
