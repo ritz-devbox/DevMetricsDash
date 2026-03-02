@@ -1,585 +1,499 @@
-// ============================================================
-// DevMetricsDash — GitHub Metrics Fetcher
-// ============================================================
-// Fetches real metrics from the GitHub API using Octokit.
-// Requires GITHUB_TOKEN environment variable.
-// ============================================================
+import { Octokit } from '@octokit/rest';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as yaml from 'js-yaml';
+import 'dotenv/config';
 
-import { Octokit } from "@octokit/rest";
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
-import * as yaml from "js-yaml";
-import type {
-  Config,
-  MetricsData,
-  ContributorStats,
-  CommitData,
-  PullRequestData,
-  IssueData,
-  ReleaseData,
-  DailyActivity,
-  WeeklyActivity,
-  RepositoryStats,
-  DORAMetrics,
-  HeatmapData,
-  LanguageBreakdown,
-} from "./types.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const ROOT = join(__dirname, "..");
-
-// ─── Load Config ────────────────────────────────────────
-function loadConfig(): Config {
-  const configPath = join(ROOT, "config.yml");
-  const raw = readFileSync(configPath, "utf-8");
-  return yaml.load(raw) as Config;
+// ── Config ──────────────────────────────────────────────
+interface Config {
+  owner: string;
+  repositories: string[];
+  lookback_days: number;
 }
 
-// ─── Initialize Octokit ─────────────────────────────────
-function getOctokit(): Octokit {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    console.error("❌ GITHUB_TOKEN environment variable is required.");
-    console.error("   Set it in .env or as a GitHub Actions secret.");
-    process.exit(1);
+const configPath = path.resolve(process.cwd(), 'config.yml');
+const config = yaml.load(fs.readFileSync(configPath, 'utf8')) as Config;
+
+const OWNER = config.owner;
+const LOOKBACK_DAYS = config.lookback_days || 90;
+const since = new Date(Date.now() - LOOKBACK_DAYS * 86400000).toISOString();
+
+const token = process.env.GITHUB_TOKEN || process.env.GH_PAT;
+if (!token) {
+  console.error('Missing GITHUB_TOKEN or GH_PAT environment variable.');
+  console.error('Create a token at https://github.com/settings/tokens with "repo" scope,');
+  console.error('then run:  $env:GITHUB_TOKEN="ghp_your_token_here"');
+  process.exit(1);
+}
+
+const octokit = new Octokit({ auth: token });
+const log = (msg: string) => console.log(`  ${msg}`);
+
+// ── Language colors ─────────────────────────────────────
+const LANG_COLORS: Record<string, string> = {
+  TypeScript: '#3178C6', JavaScript: '#F7DF1E', Python: '#3572A5',
+  Go: '#00ADD8', Rust: '#DEA584', Java: '#B07219', 'C#': '#178600',
+  'C++': '#F34B7D', C: '#555555', Ruby: '#701516', PHP: '#4F5D95',
+  Swift: '#F05138', Kotlin: '#A97BFF', Dart: '#00B4AB', Shell: '#89E051',
+  CSS: '#563D7C', HTML: '#E34C26', HCL: '#844FBA', Dockerfile: '#384D54',
+  SCSS: '#C6538C', Vue: '#41B883', Svelte: '#FF3E00',
+};
+
+// ── Helpers ─────────────────────────────────────────────
+function hoursBetween(a: string, b: string): number {
+  return Math.abs(new Date(b).getTime() - new Date(a).getTime()) / 3600000;
+}
+
+function avg(arr: number[]): number {
+  return arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : 0;
+}
+
+function dateKey(d: string): string {
+  return new Date(d).toISOString().slice(0, 10);
+}
+
+function weekStart(d: string): string {
+  const dt = new Date(d);
+  dt.setDate(dt.getDate() - dt.getDay());
+  return dt.toISOString().slice(0, 10);
+}
+
+function doraRating(metric: string, value: number): string {
+  switch (metric) {
+    case 'df':
+      if (value >= 7) return 'elite';
+      if (value >= 1) return 'high';
+      if (value >= 0.25) return 'medium';
+      return 'low';
+    case 'lt':
+      if (value < 1) return 'elite';
+      if (value < 168) return 'high';
+      if (value < 720) return 'medium';
+      return 'low';
+    case 'cfr':
+      if (value <= 5) return 'elite';
+      if (value <= 10) return 'high';
+      if (value <= 15) return 'medium';
+      return 'low';
+    case 'mttr':
+      if (value < 1) return 'elite';
+      if (value < 24) return 'high';
+      if (value < 168) return 'medium';
+      return 'low';
+    default: return 'medium';
   }
-  return new Octokit({ auth: token });
 }
 
-// ─── Fetch Repositories ─────────────────────────────────
-async function fetchRepos(octokit: Octokit, config: Config): Promise<any[]> {
-  if (config.repositories && config.repositories.length > 0) {
-    const repos = [];
-    for (const name of config.repositories) {
-      const { data } = await octokit.repos.get({ owner: config.owner, repo: name });
-      repos.push(data);
+// ── Main ────────────────────────────────────────────────
+async function main() {
+  console.log('\n⚡ DevMetricsDash — Fetching real GitHub metrics\n');
+  console.log(`  Owner:    ${OWNER}`);
+  console.log(`  Lookback: ${LOOKBACK_DAYS} days (since ${since.slice(0, 10)})`);
+
+  // 1. Discover repos
+  let repoNames = config.repositories?.filter(Boolean) || [];
+  if (repoNames.length === 0) {
+    log('No repos specified — auto-discovering...');
+    const { data: allRepos } = await octokit.repos.listForUser({
+      username: OWNER, sort: 'pushed', per_page: 100, type: 'owner',
+    });
+    repoNames = allRepos
+      .filter(r => !r.fork && !r.archived)
+      .filter(r => new Date(r.pushed_at || 0) > new Date(since))
+      .slice(0, 20)
+      .map(r => r.name);
+  }
+  log(`Tracking ${repoNames.length} repos: ${repoNames.join(', ')}\n`);
+
+  // Collect data across all repos
+  const allCommits: any[] = [];
+  const allPRs: any[] = [];
+  const allIssues: any[] = [];
+  const allReleases: any[] = [];
+  const repoData: any[] = [];
+  const langBytes: Record<string, number> = {};
+  const contributorMap: Record<string, any> = {};
+
+  for (const repoName of repoNames) {
+    log(`📦 ${repoName}`);
+
+    // Repo info
+    let repoInfo: any;
+    try {
+      const { data } = await octokit.repos.get({ owner: OWNER, repo: repoName });
+      repoInfo = data;
+    } catch (e: any) {
+      log(`  ⚠ Skipping (${e.status || e.message})`);
+      continue;
     }
-    return repos;
-  }
 
-  // Fetch all repos for the owner
-  const repos = await octokit.paginate(octokit.repos.listForUser, {
-    username: config.owner,
-    sort: "updated",
-    per_page: 100,
-  });
-  return repos;
-}
+    // Languages
+    let repoLangs: Record<string, number> = {};
+    try {
+      const { data: langs } = await octokit.repos.listLanguages({ owner: OWNER, repo: repoName });
+      repoLangs = langs;
+      for (const [lang, bytes] of Object.entries(langs)) {
+        langBytes[lang] = (langBytes[lang] || 0) + bytes;
+      }
+    } catch { /* empty */ }
 
-// ─── Fetch Commits ──────────────────────────────────────
-async function fetchCommits(
-  octokit: Octokit,
-  owner: string,
-  repo: string,
-  since: string
-): Promise<CommitData[]> {
-  try {
-    const commits = await octokit.paginate(octokit.repos.listCommits, {
-      owner,
-      repo,
-      since,
-      per_page: 100,
-    });
+    // Commits (paginated, up to 300)
+    const commits: any[] = [];
+    try {
+      for (let page = 1; page <= 3; page++) {
+        const { data } = await octokit.repos.listCommits({
+          owner: OWNER, repo: repoName, since, per_page: 100, page,
+        });
+        if (data.length === 0) break;
+        commits.push(...data);
+      }
+    } catch { /* empty */ }
+    log(`  ${commits.length} commits`);
 
-    return commits.map((c: any) => ({
-      sha: c.sha.substring(0, 8),
-      message: c.commit.message.split("\n")[0].substring(0, 100),
-      author: c.author?.login || c.commit.author?.name || "unknown",
-      author_avatar: c.author?.avatar_url || "",
-      date: c.commit.author?.date || "",
-      additions: 0, // Would need individual commit API calls
-      deletions: 0,
-      files_changed: 0,
-      repo,
-    }));
-  } catch (e) {
-    console.warn(`  ⚠️ Could not fetch commits for ${repo}:`, (e as Error).message);
-    return [];
-  }
-}
+    for (const c of commits) {
+      const author = c.author?.login || c.commit?.author?.name || 'unknown';
+      const avatar = c.author?.avatar_url || '';
+      const date = c.commit?.author?.date || '';
 
-// ─── Fetch Pull Requests ────────────────────────────────
-async function fetchPullRequests(
-  octokit: Octokit,
-  owner: string,
-  repo: string,
-  since: string
-): Promise<PullRequestData[]> {
-  try {
-    const prs = await octokit.paginate(octokit.pulls.list, {
-      owner,
-      repo,
-      state: "all",
-      sort: "updated",
-      direction: "desc",
-      per_page: 100,
-    });
+      // Fetch commit detail for stats (rate-limit friendly: only recent 50)
+      let additions = 0, deletions = 0, filesChanged = 0;
+      if (allCommits.length < 50) {
+        try {
+          const { data: detail } = await octokit.repos.getCommit({
+            owner: OWNER, repo: repoName, ref: c.sha,
+          });
+          additions = detail.stats?.additions || 0;
+          deletions = detail.stats?.deletions || 0;
+          filesChanged = detail.files?.length || 0;
+        } catch { /* empty */ }
+      }
 
-    const sinceDate = new Date(since);
-
-    return prs
-      .filter((pr: any) => new Date(pr.created_at) >= sinceDate)
-      .map((pr: any) => {
-        const created = new Date(pr.created_at);
-        const merged = pr.merged_at ? new Date(pr.merged_at) : null;
-        const mergeHours = merged
-          ? (merged.getTime() - created.getTime()) / 3600000
-          : null;
-
-        return {
-          number: pr.number,
-          title: pr.title.substring(0, 100),
-          author: pr.user?.login || "unknown",
-          author_avatar: pr.user?.avatar_url || "",
-          state: pr.merged_at ? "merged" : pr.state as "open" | "closed",
-          created_at: pr.created_at,
-          merged_at: pr.merged_at,
-          closed_at: pr.closed_at,
-          additions: pr.additions || 0,
-          deletions: pr.deletions || 0,
-          files_changed: pr.changed_files || 0,
-          comments: pr.comments || 0,
-          review_comments: pr.review_comments || 0,
-          reviews: 0,
-          time_to_merge_hours: mergeHours ? parseFloat(mergeHours.toFixed(1)) : null,
-          time_to_first_review_hours: null,
-          repo,
-          labels: (pr.labels || []).map((l: any) => l.name),
-        };
+      allCommits.push({
+        sha: c.sha?.slice(0, 8),
+        message: c.commit?.message?.split('\n')[0] || '',
+        author, author_avatar: avatar, date,
+        additions, deletions, files_changed: filesChanged,
+        repo: repoName,
       });
-  } catch (e) {
-    console.warn(`  ⚠️ Could not fetch PRs for ${repo}:`, (e as Error).message);
-    return [];
-  }
-}
 
-// ─── Fetch Issues ───────────────────────────────────────
-async function fetchIssues(
-  octokit: Octokit,
-  owner: string,
-  repo: string,
-  since: string
-): Promise<IssueData[]> {
-  try {
-    const issues = await octokit.paginate(octokit.issues.listForRepo, {
-      owner,
-      repo,
-      state: "all",
-      since,
-      per_page: 100,
-    });
-
-    return issues
-      .filter((i: any) => !i.pull_request) // Exclude PRs
-      .map((i: any) => {
-        const created = new Date(i.created_at);
-        const closed = i.closed_at ? new Date(i.closed_at) : null;
-        const closeHours = closed
-          ? (closed.getTime() - created.getTime()) / 3600000
-          : null;
-
-        return {
-          number: i.number,
-          title: i.title.substring(0, 100),
-          author: i.user?.login || "unknown",
-          state: i.state as "open" | "closed",
-          created_at: i.created_at,
-          closed_at: i.closed_at,
-          labels: (i.labels || []).map((l: any) => (typeof l === "string" ? l : l.name)),
-          comments: i.comments || 0,
-          time_to_close_hours: closeHours ? parseFloat(closeHours.toFixed(1)) : null,
-          repo,
+      // Track contributors
+      if (!contributorMap[author]) {
+        contributorMap[author] = {
+          username: author, avatar_url: avatar,
+          total_commits: 0, total_prs: 0, total_reviews: 0, total_issues: 0,
+          additions: 0, deletions: 0, active_days_set: new Set(),
+          first_commit_date: date, last_commit_date: date,
         };
+      }
+      const ct = contributorMap[author];
+      ct.total_commits++;
+      ct.additions += additions;
+      ct.deletions += deletions;
+      if (date) {
+        ct.active_days_set.add(dateKey(date));
+        if (date < ct.first_commit_date) ct.first_commit_date = date;
+        if (date > ct.last_commit_date) ct.last_commit_date = date;
+      }
+    }
+
+    // Pull requests (up to 200)
+    const prs: any[] = [];
+    try {
+      for (let page = 1; page <= 2; page++) {
+        const { data } = await octokit.pulls.list({
+          owner: OWNER, repo: repoName, state: 'all', sort: 'created',
+          direction: 'desc', per_page: 100, page,
+        });
+        const filtered = data.filter(pr => new Date(pr.created_at) > new Date(since));
+        prs.push(...filtered);
+        if (data.length < 100 || filtered.length < data.length) break;
+      }
+    } catch { /* empty */ }
+    log(`  ${prs.length} PRs`);
+
+    for (const pr of prs) {
+      const author = pr.user?.login || 'unknown';
+      const mergeTime = pr.merged_at ? hoursBetween(pr.created_at, pr.merged_at) : 0;
+
+      // Get review info
+      let reviews = 0, reviewComments = 0, firstReviewHours = 0;
+      try {
+        const { data: revs } = await octokit.pulls.listReviews({
+          owner: OWNER, repo: repoName, pull_number: pr.number, per_page: 10,
+        });
+        reviews = revs.length;
+        if (revs.length > 0) {
+          firstReviewHours = hoursBetween(pr.created_at, revs[0].submitted_at || pr.created_at);
+        }
+        if (contributorMap[author]) contributorMap[author].total_reviews += reviews;
+        for (const rev of revs) {
+          const reviewer = rev.user?.login;
+          if (reviewer && contributorMap[reviewer]) {
+            contributorMap[reviewer].total_reviews++;
+          }
+        }
+      } catch { /* empty */ }
+
+      allPRs.push({
+        number: pr.number,
+        title: pr.title,
+        author,
+        author_avatar: pr.user?.avatar_url || '',
+        state: pr.merged_at ? 'merged' : pr.state,
+        created_at: pr.created_at,
+        merged_at: pr.merged_at,
+        closed_at: pr.closed_at,
+        additions: pr.additions || 0,
+        deletions: pr.deletions || 0,
+        files_changed: pr.changed_files || 0,
+        comments: pr.comments || 0,
+        review_comments: reviewComments,
+        reviews,
+        time_to_merge_hours: Math.round(mergeTime * 10) / 10,
+        time_to_first_review_hours: Math.round(firstReviewHours * 10) / 10,
+        repo: repoName,
+        labels: pr.labels?.map((l: any) => l.name) || [],
       });
-  } catch (e) {
-    console.warn(`  ⚠️ Could not fetch issues for ${repo}:`, (e as Error).message);
-    return [];
-  }
-}
 
-// ─── Fetch Releases ─────────────────────────────────────
-async function fetchReleases(
-  octokit: Octokit,
-  owner: string,
-  repo: string
-): Promise<ReleaseData[]> {
-  try {
-    const { data: releases } = await octokit.repos.listReleases({
-      owner,
-      repo,
-      per_page: 50,
+      if (contributorMap[author]) contributorMap[author].total_prs++;
+    }
+
+    // Issues (up to 200)
+    const issues: any[] = [];
+    try {
+      for (let page = 1; page <= 2; page++) {
+        const { data } = await octokit.issues.listForRepo({
+          owner: OWNER, repo: repoName, state: 'all', since,
+          per_page: 100, page,
+        });
+        const realIssues = data.filter(i => !i.pull_request);
+        issues.push(...realIssues.filter(i => new Date(i.created_at) > new Date(since)));
+        if (data.length < 100) break;
+      }
+    } catch { /* empty */ }
+    log(`  ${issues.length} issues`);
+
+    for (const issue of issues) {
+      const closeTime = issue.closed_at ? hoursBetween(issue.created_at, issue.closed_at) : undefined;
+      allIssues.push({
+        number: issue.number,
+        title: issue.title,
+        author: issue.user?.login || 'unknown',
+        state: issue.state,
+        created_at: issue.created_at,
+        closed_at: issue.closed_at,
+        labels: issue.labels?.map((l: any) => typeof l === 'string' ? l : l.name) || [],
+        comments: issue.comments || 0,
+        repo: repoName,
+        time_to_close_hours: closeTime ? Math.round(closeTime * 10) / 10 : undefined,
+      });
+      const ia = issue.user?.login;
+      if (ia && contributorMap[ia]) contributorMap[ia].total_issues++;
+    }
+
+    // Releases
+    try {
+      const { data: releases } = await octokit.repos.listReleases({
+        owner: OWNER, repo: repoName, per_page: 50,
+      });
+      allReleases.push(...releases.filter(r => new Date(r.created_at) > new Date(since)));
+    } catch { /* empty */ }
+
+    // Build repo summary
+    const repoPRsMerged = allPRs.filter(p => p.repo === repoName && p.state === 'merged');
+    const langTotal = Object.values(repoLangs).reduce((s, v) => s + v, 0) || 1;
+    const langPcts: Record<string, number> = {};
+    for (const [lang, bytes] of Object.entries(repoLangs)) {
+      langPcts[lang] = Math.round((bytes / langTotal) * 100);
+    }
+
+    repoData.push({
+      name: repoName,
+      full_name: repoInfo.full_name,
+      description: repoInfo.description || '',
+      language: repoInfo.language || 'Unknown',
+      stars: repoInfo.stargazers_count || 0,
+      forks: repoInfo.forks_count || 0,
+      open_issues: repoInfo.open_issues_count || 0,
+      total_commits: commits.length,
+      total_prs: prs.length,
+      avg_pr_merge_time_hours: Math.round(avg(repoPRsMerged.map(p => p.time_to_merge_hours)) * 10) / 10,
+      contributors_count: new Set(commits.map(c => c.author?.login)).size,
+      last_commit_date: commits[0]?.commit?.author?.date || repoInfo.pushed_at,
+      languages: langPcts,
     });
-
-    return releases.map((r: any) => ({
-      tag: r.tag_name,
-      name: r.name || r.tag_name,
-      published_at: r.published_at || r.created_at,
-      author: r.author?.login || "unknown",
-      repo,
-      is_prerelease: r.prerelease,
-    }));
-  } catch (e) {
-    console.warn(`  ⚠️ Could not fetch releases for ${repo}:`, (e as Error).message);
-    return [];
   }
-}
 
-// ─── Fetch Languages ────────────────────────────────────
-async function fetchLanguages(
-  octokit: Octokit,
-  owner: string,
-  repo: string
-): Promise<Record<string, number>> {
-  try {
-    const { data } = await octokit.repos.listLanguages({ owner, repo });
-    return data;
-  } catch {
-    return {};
-  }
-}
+  // ── Build aggregate data ───────────────────────────────
 
-// ─── Build Aggregated Metrics ───────────────────────────
-function buildMetrics(
-  config: Config,
-  repos: any[],
-  allCommits: CommitData[],
-  allPRs: PullRequestData[],
-  allIssues: IssueData[],
-  allReleases: ReleaseData[],
-  allLanguages: Record<string, number>
-): MetricsData {
-  const lookbackDays = config.metrics.lookback_days;
+  // Sort commits by date desc
+  allCommits.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  allPRs.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-  // ─── Contributors ─────────────────────────────────
-  const contributorMap = new Map<string, ContributorStats>();
-  allCommits.forEach((c) => {
-    const existing = contributorMap.get(c.author) || {
-      username: c.author,
-      avatar_url: c.author_avatar,
-      total_commits: 0,
-      total_prs: 0,
-      total_reviews: 0,
-      total_issues: 0,
-      additions: 0,
-      deletions: 0,
-      active_days: 0,
-      first_commit_date: c.date,
-      last_commit_date: c.date,
+  // Contributors
+  const contributors = Object.values(contributorMap).map((c: any) => ({
+    username: c.username,
+    avatar_url: c.avatar_url,
+    total_commits: c.total_commits,
+    total_prs: c.total_prs,
+    total_reviews: c.total_reviews,
+    total_issues: c.total_issues,
+    additions: c.additions,
+    deletions: c.deletions,
+    active_days: c.active_days_set.size,
+    first_commit_date: c.first_commit_date,
+    last_commit_date: c.last_commit_date,
+  }));
+
+  // Daily activity
+  const dailyMap: Record<string, any> = {};
+  const startDate = new Date(since);
+  const endDate = new Date();
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    dailyMap[key] = {
+      date: key, commits: 0, prs_opened: 0, prs_merged: 0,
+      issues_opened: 0, issues_closed: 0, reviews: 0, additions: 0, deletions: 0,
     };
-    existing.total_commits++;
-    existing.additions += c.additions;
-    existing.deletions += c.deletions;
-    if (c.date < existing.first_commit_date) existing.first_commit_date = c.date;
-    if (c.date > existing.last_commit_date) existing.last_commit_date = c.date;
-    contributorMap.set(c.author, existing);
-  });
+  }
+  for (const c of allCommits) {
+    const k = dateKey(c.date);
+    if (dailyMap[k]) { dailyMap[k].commits++; dailyMap[k].additions += c.additions; dailyMap[k].deletions += c.deletions; }
+  }
+  for (const pr of allPRs) {
+    const k = dateKey(pr.created_at);
+    if (dailyMap[k]) dailyMap[k].prs_opened++;
+    if (pr.merged_at) { const mk = dateKey(pr.merged_at); if (dailyMap[mk]) dailyMap[mk].prs_merged++; }
+  }
+  for (const issue of allIssues) {
+    const k = dateKey(issue.created_at);
+    if (dailyMap[k]) dailyMap[k].issues_opened++;
+    if (issue.closed_at) { const ck = dateKey(issue.closed_at); if (dailyMap[ck]) dailyMap[ck].issues_closed++; }
+  }
+  const daily_activity = Object.values(dailyMap).sort((a, b) => a.date.localeCompare(b.date));
 
-  allPRs.forEach((pr) => {
-    const existing = contributorMap.get(pr.author);
-    if (existing) existing.total_prs++;
-  });
+  // Weekly activity
+  const weeklyMap: Record<string, any> = {};
+  for (const day of daily_activity) {
+    const ws = weekStart(day.date);
+    if (!weeklyMap[ws]) {
+      weeklyMap[ws] = {
+        week_start: ws, commits: 0, prs_opened: 0, prs_merged: 0,
+        issues_opened: 0, issues_closed: 0, additions: 0, deletions: 0,
+        contributors_set: new Set(),
+      };
+    }
+    const w = weeklyMap[ws];
+    w.commits += day.commits; w.prs_opened += day.prs_opened; w.prs_merged += day.prs_merged;
+    w.issues_opened += day.issues_opened; w.issues_closed += day.issues_closed;
+    w.additions += day.additions; w.deletions += day.deletions;
+  }
+  for (const c of allCommits) {
+    const ws = weekStart(c.date);
+    if (weeklyMap[ws]) weeklyMap[ws].contributors_set.add(c.author);
+  }
+  const weekly_activity = Object.values(weeklyMap)
+    .sort((a: any, b: any) => a.week_start.localeCompare(b.week_start))
+    .map((w: any) => ({
+      week_start: w.week_start, commits: w.commits, prs_opened: w.prs_opened,
+      prs_merged: w.prs_merged, issues_opened: w.issues_opened, issues_closed: w.issues_closed,
+      additions: w.additions, deletions: w.deletions,
+      active_contributors: w.contributors_set.size,
+    }));
 
-  allIssues.forEach((issue) => {
-    const existing = contributorMap.get(issue.author);
-    if (existing) existing.total_issues++;
-  });
-
-  const contributors = Array.from(contributorMap.values())
-    .sort((a, b) => b.total_commits - a.total_commits);
-
-  // ─── Daily Activity ───────────────────────────────
-  const dailyMap = new Map<string, DailyActivity>();
-  const now = new Date();
-  for (let i = lookbackDays; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const key = d.toISOString().split("T")[0];
-    dailyMap.set(key, {
-      date: key,
-      commits: 0,
-      prs_opened: 0,
-      prs_merged: 0,
-      issues_opened: 0,
-      issues_closed: 0,
-      reviews: 0,
-      additions: 0,
-      deletions: 0,
-    });
+  // Heatmap (365 days)
+  const heatmapStart = new Date(Date.now() - 365 * 86400000);
+  const maxCount = Math.max(...daily_activity.map(d => d.commits), 1);
+  const heatmap: any[] = [];
+  for (let d = new Date(heatmapStart); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    const count = dailyMap[key]?.commits || 0;
+    const level = count === 0 ? 0 : Math.min(4, Math.ceil((count / maxCount) * 4));
+    heatmap.push({ date: key, count, level });
   }
 
-  allCommits.forEach((c) => {
-    const key = c.date.split("T")[0];
-    const day = dailyMap.get(key);
-    if (day) {
-      day.commits++;
-      day.additions += c.additions;
-      day.deletions += c.deletions;
-    }
-  });
-
-  allPRs.forEach((pr) => {
-    const openKey = pr.created_at.split("T")[0];
-    const openDay = dailyMap.get(openKey);
-    if (openDay) openDay.prs_opened++;
-
-    if (pr.merged_at) {
-      const mergeKey = pr.merged_at.split("T")[0];
-      const mergeDay = dailyMap.get(mergeKey);
-      if (mergeDay) mergeDay.prs_merged++;
-    }
-  });
-
-  allIssues.forEach((issue) => {
-    const openKey = issue.created_at.split("T")[0];
-    const openDay = dailyMap.get(openKey);
-    if (openDay) openDay.issues_opened++;
-
-    if (issue.closed_at) {
-      const closeKey = issue.closed_at.split("T")[0];
-      const closeDay = dailyMap.get(closeKey);
-      if (closeDay) closeDay.issues_closed++;
-    }
-  });
-
-  const dailyActivity = Array.from(dailyMap.values());
-
-  // ─── Weekly Activity ──────────────────────────────
-  const weeklyActivity: WeeklyActivity[] = [];
-  for (let i = 0; i < dailyActivity.length; i += 7) {
-    const weekSlice = dailyActivity.slice(i, i + 7);
-    if (weekSlice.length === 0) continue;
-    weeklyActivity.push({
-      week_start: weekSlice[0].date,
-      commits: weekSlice.reduce((s, d) => s + d.commits, 0),
-      prs_opened: weekSlice.reduce((s, d) => s + d.prs_opened, 0),
-      prs_merged: weekSlice.reduce((s, d) => s + d.prs_merged, 0),
-      issues_opened: weekSlice.reduce((s, d) => s + d.issues_opened, 0),
-      issues_closed: weekSlice.reduce((s, d) => s + d.issues_closed, 0),
-      additions: weekSlice.reduce((s, d) => s + d.additions, 0),
-      deletions: weekSlice.reduce((s, d) => s + d.deletions, 0),
-      active_contributors: new Set(
-        allCommits
-          .filter((c) => {
-            const cd = c.date.split("T")[0];
-            return cd >= weekSlice[0].date && cd <= weekSlice[weekSlice.length - 1].date;
-          })
-          .map((c) => c.author)
-      ).size,
-    });
-  }
-
-  // ─── Heatmap (365 days) ───────────────────────────
-  const heatmap: HeatmapData[] = [];
-  for (let i = 365; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const key = d.toISOString().split("T")[0];
-    const dayData = dailyMap.get(key);
-    const count = dayData ? dayData.commits : 0;
-    const level = count === 0 ? 0 : count <= 3 ? 1 : count <= 7 ? 2 : count <= 12 ? 3 : 4;
-    heatmap.push({ date: key, count, level: level as 0 | 1 | 2 | 3 | 4 });
-  }
-
-  // ─── Language Breakdown ───────────────────────────
-  const totalBytes = Object.values(allLanguages).reduce((s, v) => s + v, 0) || 1;
-  const langColors: Record<string, string> = {
-    TypeScript: "#3178C6", JavaScript: "#F7DF1E", Python: "#3572A5",
-    Go: "#00ADD8", Rust: "#DEA584", Java: "#B07219", CSS: "#563D7C",
-    HTML: "#E34C26", Shell: "#89E051", Ruby: "#701516", C: "#555555",
-    "C++": "#F34B7D", "C#": "#178600", PHP: "#4F5D95", Swift: "#F05138",
-    Kotlin: "#A97BFF", Dart: "#00B4AB", HCL: "#844FBA",
-  };
-  const languages: LanguageBreakdown[] = Object.entries(allLanguages)
+  // Languages
+  const totalBytes = Object.values(langBytes).reduce((s, v) => s + v, 0) || 1;
+  const languages = Object.entries(langBytes)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
+    .slice(0, 10)
     .map(([lang, bytes]) => ({
       language: lang,
-      percentage: parseFloat(((bytes / totalBytes) * 100).toFixed(1)),
-      color: langColors[lang] || "#6B7280",
+      percentage: Math.round((bytes / totalBytes) * 1000) / 10,
+      color: LANG_COLORS[lang] || '#6B7280',
       bytes,
     }));
 
-  // ─── Repository Stats ─────────────────────────────
-  const repoStats: RepositoryStats[] = repos.map((r: any) => {
-    const repoCommits = allCommits.filter((c) => c.repo === r.name);
-    const repoPRs = allPRs.filter((p) => p.repo === r.name);
-    const mergedPRs = repoPRs.filter((p) => p.state === "merged" && p.time_to_merge_hours != null);
-    const avgMerge = mergedPRs.length > 0
-      ? mergedPRs.reduce((s, p) => s + (p.time_to_merge_hours || 0), 0) / mergedPRs.length
-      : 0;
-
-    return {
-      name: r.name,
-      full_name: r.full_name,
-      description: r.description || "",
-      language: r.language || "Unknown",
-      stars: r.stargazers_count || 0,
-      forks: r.forks_count || 0,
-      open_issues: r.open_issues_count || 0,
-      total_commits: repoCommits.length,
-      total_prs: repoPRs.length,
-      avg_pr_merge_time_hours: parseFloat(avgMerge.toFixed(1)),
-      contributors_count: new Set(repoCommits.map((c) => c.author)).size,
-      last_commit_date: repoCommits[0]?.date || "",
-      languages: {},
-    };
-  });
-
-  // ─── DORA Metrics ─────────────────────────────────
-  const deploysPerWeek = allReleases.length / (lookbackDays / 7);
-  const mergedPRs = allPRs.filter((p) => p.time_to_merge_hours != null);
-  const avgLeadTime = mergedPRs.length > 0
-    ? mergedPRs.reduce((s, p) => s + (p.time_to_merge_hours || 0), 0) / mergedPRs.length
-    : 0;
-
-  function doraRating(metric: string, value: number): "elite" | "high" | "medium" | "low" {
-    if (metric === "deploy_freq") return value >= 7 ? "elite" : value >= 1 ? "high" : value >= 0.25 ? "medium" : "low";
-    if (metric === "lead_time") return value <= 24 ? "elite" : value <= 168 ? "high" : value <= 720 ? "medium" : "low";
-    if (metric === "failure_rate") return value <= 5 ? "elite" : value <= 10 ? "high" : value <= 15 ? "medium" : "low";
-    if (metric === "mttr") return value <= 1 ? "elite" : value <= 24 ? "high" : value <= 168 ? "medium" : "low";
-    return "medium";
-  }
-
-  const dora: DORAMetrics = {
-    deployment_frequency: {
-      value: parseFloat(deploysPerWeek.toFixed(1)),
-      unit: "per_week",
-      rating: doraRating("deploy_freq", deploysPerWeek),
-    },
-    lead_time_for_changes: {
-      value_hours: parseFloat(avgLeadTime.toFixed(1)),
-      rating: doraRating("lead_time", avgLeadTime),
-    },
-    change_failure_rate: {
-      value_percent: 5.0, // Would need deployment tracking for accurate data
-      rating: doraRating("failure_rate", 5.0),
-    },
-    mean_time_to_recovery: {
-      value_hours: 4.0, // Would need incident tracking
-      rating: doraRating("mttr", 4.0),
-    },
+  // Summary
+  const mergedPRs = allPRs.filter(p => p.state === 'merged');
+  const closedIssues = allIssues.filter(i => i.state === 'closed');
+  const summary = {
+    total_commits: allCommits.length,
+    total_prs: allPRs.length,
+    total_prs_merged: mergedPRs.length,
+    total_issues: allIssues.length,
+    total_issues_closed: closedIssues.length,
+    total_reviews: allPRs.reduce((s, p) => s + p.reviews, 0),
+    total_releases: allReleases.length,
+    total_contributors: contributors.length,
+    total_repositories: repoData.length,
+    avg_pr_merge_time_hours: Math.round(avg(mergedPRs.map(p => p.time_to_merge_hours)) * 10) / 10,
+    avg_time_to_first_review_hours: Math.round(avg(allPRs.filter(p => p.time_to_first_review_hours > 0).map(p => p.time_to_first_review_hours)) * 10) / 10,
+    avg_issue_close_time_hours: Math.round(avg(closedIssues.filter(i => i.time_to_close_hours).map(i => i.time_to_close_hours!)) * 10) / 10,
+    code_additions: allCommits.reduce((s, c) => s + c.additions, 0),
+    code_deletions: allCommits.reduce((s, c) => s + c.deletions, 0),
   };
 
-  // ─── Summary ──────────────────────────────────────
-  const totalPRsMerged = allPRs.filter((p) => p.state === "merged").length;
-  const totalIssuesClosed = allIssues.filter((i) => i.state === "closed").length;
-  const avgReviewTime = mergedPRs
-    .filter((p) => p.time_to_first_review_hours != null)
-    .reduce((s, p) => s + (p.time_to_first_review_hours || 0), 0) / (mergedPRs.length || 1);
-  const avgIssueClose = allIssues
-    .filter((i) => i.time_to_close_hours != null)
-    .reduce((s, i) => s + (i.time_to_close_hours || 0), 0) / (totalIssuesClosed || 1);
+  // DORA metrics (estimated from available data)
+  const weeksTracked = Math.max(weekly_activity.length, 1);
+  const deploymentsPerWeek = Math.round((allReleases.length / weeksTracked) * 10) / 10 || Math.round((mergedPRs.length / weeksTracked) * 10) / 10;
+  const leadTimeHours = summary.avg_pr_merge_time_hours || 0;
+  const failedDeployments = allIssues.filter(i => i.labels.some((l: string) => /bug|incident|hotfix/i.test(l))).length;
+  const cfr = mergedPRs.length ? Math.round((failedDeployments / mergedPRs.length) * 1000) / 10 : 0;
+  const bugFixTimes = closedIssues
+    .filter(i => i.labels.some((l: string) => /bug|incident/i.test(l)) && i.time_to_close_hours)
+    .map(i => i.time_to_close_hours!);
+  const mttr = Math.round(avg(bugFixTimes) * 10) / 10 || leadTimeHours * 2;
 
-  return {
+  const dora = {
+    deployment_frequency: { value: deploymentsPerWeek, unit: 'per_week', rating: doraRating('df', deploymentsPerWeek) },
+    lead_time_for_changes: { value_hours: leadTimeHours, rating: doraRating('lt', leadTimeHours) },
+    change_failure_rate: { value_percent: cfr, rating: doraRating('cfr', cfr) },
+    mean_time_to_recovery: { value_hours: mttr, rating: doraRating('mttr', mttr) },
+  };
+
+  // ── Write output ───────────────────────────────────────
+  const output = {
     generated_at: new Date().toISOString(),
-    config: {
-      owner: config.owner,
-      lookback_days: lookbackDays,
-    },
-    summary: {
-      total_commits: allCommits.length,
-      total_prs: allPRs.length,
-      total_prs_merged: totalPRsMerged,
-      total_issues: allIssues.length,
-      total_issues_closed: totalIssuesClosed,
-      total_reviews: 0, // Would need review API
-      total_releases: allReleases.length,
-      total_contributors: contributors.length,
-      total_repositories: repos.length,
-      avg_pr_merge_time_hours: parseFloat(avgLeadTime.toFixed(1)),
-      avg_time_to_first_review_hours: parseFloat(avgReviewTime.toFixed(1)),
-      avg_issue_close_time_hours: parseFloat(avgIssueClose.toFixed(1)),
-      code_additions: allCommits.reduce((s, c) => s + c.additions, 0),
-      code_deletions: allCommits.reduce((s, c) => s + c.deletions, 0),
-    },
+    config: { owner: OWNER, lookback_days: LOOKBACK_DAYS },
+    summary,
     contributors,
-    commits: allCommits.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-    pull_requests: allPRs.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()),
-    issues: allIssues,
-    releases: allReleases.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()),
-    daily_activity: dailyActivity,
-    weekly_activity: weeklyActivity,
-    repositories: repoStats,
+    commits: allCommits.slice(0, 50),
+    pull_requests: allPRs.slice(0, 200),
+    issues: allIssues.slice(0, 200),
+    daily_activity,
+    weekly_activity,
+    repositories: repoData,
     dora,
     heatmap,
     languages,
   };
+
+  const dataDir = path.resolve(process.cwd(), 'data');
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(path.join(dataDir, 'metrics.json'), JSON.stringify(output, null, 2));
+
+  // Also copy to dashboard public folder
+  const dashPublic = path.resolve(process.cwd(), 'dashboard', 'public', 'data');
+  if (!fs.existsSync(dashPublic)) fs.mkdirSync(dashPublic, { recursive: true });
+  fs.writeFileSync(path.join(dashPublic, 'metrics.json'), JSON.stringify(output, null, 2));
+
+  console.log('\n✅ Done! Wrote data/metrics.json');
+  console.log(`   ${summary.total_commits} commits, ${summary.total_prs} PRs, ${summary.total_issues} issues`);
+  console.log(`   ${contributors.length} contributors across ${repoData.length} repos\n`);
 }
 
-// ─── Main ───────────────────────────────────────────────
-async function main() {
-  console.log("🚀 DevMetricsDash — Fetching GitHub Metrics\n");
-
-  const config = loadConfig();
-  const octokit = getOctokit();
-  const since = new Date();
-  since.setDate(since.getDate() - config.metrics.lookback_days);
-  const sinceISO = since.toISOString();
-
-  console.log(`📋 Owner: ${config.owner}`);
-  console.log(`📅 Lookback: ${config.metrics.lookback_days} days (since ${sinceISO.split("T")[0]})\n`);
-
-  // Fetch repos
-  console.log("📦 Fetching repositories...");
-  const repos = await fetchRepos(octokit, config);
-  console.log(`   Found ${repos.length} repositories\n`);
-
-  let allCommits: CommitData[] = [];
-  let allPRs: PullRequestData[] = [];
-  let allIssues: IssueData[] = [];
-  let allReleases: ReleaseData[] = [];
-  let allLanguages: Record<string, number> = {};
-
-  for (const repo of repos) {
-    const name = repo.name;
-    console.log(`🔍 Processing ${name}...`);
-
-    if (config.metrics.collect.commits) {
-      const commits = await fetchCommits(octokit, config.owner, name, sinceISO);
-      allCommits.push(...commits);
-      console.log(`   ${commits.length} commits`);
-    }
-
-    if (config.metrics.collect.pull_requests) {
-      const prs = await fetchPullRequests(octokit, config.owner, name, sinceISO);
-      allPRs.push(...prs);
-      console.log(`   ${prs.length} pull requests`);
-    }
-
-    if (config.metrics.collect.issues) {
-      const issues = await fetchIssues(octokit, config.owner, name, sinceISO);
-      allIssues.push(...issues);
-      console.log(`   ${issues.length} issues`);
-    }
-
-    if (config.metrics.collect.releases) {
-      const releases = await fetchReleases(octokit, config.owner, name);
-      allReleases.push(...releases);
-      console.log(`   ${releases.length} releases`);
-    }
-
-    const langs = await fetchLanguages(octokit, config.owner, name);
-    Object.entries(langs).forEach(([lang, bytes]) => {
-      allLanguages[lang] = (allLanguages[lang] || 0) + bytes;
-    });
-  }
-
-  console.log("\n📊 Building metrics...");
-  const metrics = buildMetrics(config, repos, allCommits, allPRs, allIssues, allReleases, allLanguages);
-
-  const outDir = join(ROOT, "data");
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(join(outDir, "metrics.json"), JSON.stringify(metrics, null, 2));
-
-  console.log("\n✅ Metrics saved → data/metrics.json");
-  console.log(`   📊 ${allCommits.length} commits`);
-  console.log(`   🔀 ${allPRs.length} pull requests`);
-  console.log(`   🐛 ${allIssues.length} issues`);
-  console.log(`   🚀 ${allReleases.length} releases`);
-  console.log(`   👥 ${metrics.contributors.length} contributors`);
-}
-
-main().catch(console.error);
-
+main().catch(err => {
+  console.error('\n❌ Error:', err.message);
+  process.exit(1);
+});

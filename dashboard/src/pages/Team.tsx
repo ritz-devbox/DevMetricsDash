@@ -1,223 +1,133 @@
-import { motion } from "framer-motion";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  Radar,
-  Legend,
-} from "recharts";
-import Header from "../components/layout/Header";
-import type { MetricsData } from "../types/metrics";
+import { motion } from 'framer-motion';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
+import type { MetricsData } from '../types/metrics';
+import PageWrapper, { fadeInUp } from '../components/layout/PageWrapper';
+import GlassCard from '../components/dashboard/GlassCard';
+import { formatNumber, timeAgo } from '../services/dataService';
 
-interface TeamProps {
+interface Props {
   data: MetricsData;
 }
 
-const COLORS = ["#8B5CF6", "#06B6D4", "#10B981", "#F59E0B", "#EC4899", "#F97316"];
+export default function Team({ data }: Props) {
+  const { contributors } = data;
 
-function CustomTooltip({ active, payload, label }: any) {
-  if (!active || !payload) return null;
-  return (
-    <div className="glass-card p-3 shadow-xl border border-dark-600">
-      <p className="text-xs text-dark-300 font-mono mb-2">{label}</p>
-      {payload.map((entry: any, i: number) => (
-        <div key={i} className="flex items-center gap-2 text-xs">
-          <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color }} />
-          <span className="text-dark-300">{entry.name}:</span>
-          <span className="font-semibold text-dark-50">{entry.value}</span>
-        </div>
-      ))}
-    </div>
+  // Sort by total activity
+  const sorted = [...contributors].sort((a, b) =>
+    (b.total_commits + b.total_prs + b.total_reviews) - (a.total_commits + a.total_prs + a.total_reviews)
   );
-}
 
-export default function Team({ data }: TeamProps) {
-  const contributors = data.contributors;
+  // Calculate max values for normalization
+  const maxCommits = Math.max(...contributors.map(c => c.total_commits));
+  const maxPRs = Math.max(...contributors.map(c => c.total_prs));
+  const maxReviews = Math.max(...contributors.map(c => c.total_reviews));
+  const maxIssues = Math.max(...contributors.map(c => c.total_issues));
+  const maxActiveDays = Math.max(...contributors.map(c => c.active_days));
 
-  // Radar chart data
-  const maxCommits = Math.max(...contributors.map((c) => c.total_commits));
-  const maxPRs = Math.max(...contributors.map((c) => c.total_prs));
-  const maxReviews = Math.max(...contributors.map((c) => c.total_reviews));
-  const maxAdditions = Math.max(...contributors.map((c) => c.additions));
-  const maxDays = Math.max(...contributors.map((c) => c.active_days));
+  function getRadarData(c: typeof contributors[0]) {
+    return [
+      { skill: 'Commits', value: (c.total_commits / maxCommits) * 100 },
+      { skill: 'PRs', value: (c.total_prs / maxPRs) * 100 },
+      { skill: 'Reviews', value: (c.total_reviews / maxReviews) * 100 },
+      { skill: 'Issues', value: (c.total_issues / (maxIssues || 1)) * 100 },
+      { skill: 'Active', value: (c.active_days / maxActiveDays) * 100 },
+    ];
+  }
 
-  const radarData = [
-    { metric: "Commits", ...Object.fromEntries(contributors.slice(0, 4).map((c) => [c.username, Math.round((c.total_commits / maxCommits) * 100)])) },
-    { metric: "PRs", ...Object.fromEntries(contributors.slice(0, 4).map((c) => [c.username, Math.round((c.total_prs / maxPRs) * 100)])) },
-    { metric: "Reviews", ...Object.fromEntries(contributors.slice(0, 4).map((c) => [c.username, Math.round((c.total_reviews / (maxReviews || 1)) * 100)])) },
-    { metric: "Code Volume", ...Object.fromEntries(contributors.slice(0, 4).map((c) => [c.username, Math.round((c.additions / maxAdditions) * 100)])) },
-    { metric: "Active Days", ...Object.fromEntries(contributors.slice(0, 4).map((c) => [c.username, Math.round((c.active_days / maxDays) * 100)])) },
-  ];
-
-  // Bar chart data
-  const barData = contributors.map((c) => ({
-    name: c.username,
-    commits: c.total_commits,
-    prs: c.total_prs,
-    reviews: c.total_reviews,
-  }));
+  const colors = ['#8b5cf6', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#f97316'];
 
   return (
-    <div>
-      <Header
-        title="Team"
-        subtitle={`${contributors.length} contributors active`}
-        generatedAt={data.generated_at}
-      />
+    <PageWrapper
+      title="Team"
+      subtitle={`${contributors.length} contributors active in the last ${data.config.lookback_days} days`}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+        {sorted.map((contributor, i) => {
+          const color = colors[i % colors.length];
+          const radarData = getRadarData(contributor);
 
-      {/* Contributor Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-8">
-        {contributors.map((c, i) => (
-          <motion.div
-            key={c.username}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08 }}
-            className="glass-card-hover p-5"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold"
-                style={{
-                  backgroundColor: `${COLORS[i % COLORS.length]}20`,
-                  color: COLORS[i % COLORS.length],
-                }}
-              >
-                {c.username[0].toUpperCase()}
-              </div>
-              <div>
-                <h3 className="font-semibold text-dark-50">@{c.username}</h3>
-                <p className="text-[11px] text-dark-400">
-                  Active {c.active_days} days
-                </p>
-              </div>
-              <div className="ml-auto text-right">
-                <span className="text-xs font-mono text-dark-500">
-                  #{i + 1}
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-3 mb-3">
-              {[
-                { label: "Commits", value: c.total_commits, color: "#8B5CF6" },
-                { label: "PRs", value: c.total_prs, color: "#06B6D4" },
-                { label: "Reviews", value: c.total_reviews, color: "#10B981" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p
-                    className="text-lg font-bold"
-                    style={{ color: stat.color }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="text-[10px] text-dark-500">{stat.label}</p>
+          return (
+            <motion.div key={contributor.username} variants={fadeInUp}>
+              <GlassCard className="p-5" hover delay={i * 0.06}>
+                {/* Header */}
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="relative">
+                    <img
+                      src={contributor.avatar_url}
+                      alt={contributor.username}
+                      className="h-14 w-14 rounded-full ring-2 ring-dark-600/50"
+                    />
+                    <div
+                      className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-dark-800 flex items-center justify-center text-[8px]"
+                      style={{ background: color }}
+                    >
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-bold text-dark-50 truncate">{contributor.username}</h3>
+                    <p className="text-[11px] text-dark-400">
+                      Active {contributor.active_days} days · Last active {timeAgo(contributor.last_commit_date)}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Code impact bar */}
-            <div className="flex items-center gap-2 text-[11px]">
-              <span className="text-accent-green font-mono">
-                +{(c.additions / 1000).toFixed(1)}k
-              </span>
-              <div className="flex-1 h-1.5 bg-dark-700 rounded-full overflow-hidden flex">
-                <div
-                  className="h-full bg-accent-green rounded-l-full"
-                  style={{
-                    width: `${
-                      (c.additions / (c.additions + c.deletions)) * 100
-                    }%`,
-                  }}
-                />
-                <div
-                  className="h-full bg-accent-red rounded-r-full"
-                  style={{
-                    width: `${
-                      (c.deletions / (c.additions + c.deletions)) * 100
-                    }%`,
-                  }}
-                />
-              </div>
-              <span className="text-accent-red font-mono">
-                -{(c.deletions / 1000).toFixed(1)}k
-              </span>
-            </div>
-          </motion.div>
-        ))}
+                {/* Stats Row */}
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {[
+                    { label: 'Commits', value: contributor.total_commits },
+                    { label: 'PRs', value: contributor.total_prs },
+                    { label: 'Reviews', value: contributor.total_reviews },
+                    { label: 'Issues', value: contributor.total_issues },
+                  ].map(s => (
+                    <div key={s.label} className="bg-dark-700/30 rounded-lg p-2 text-center">
+                      <p className="text-sm font-bold text-dark-50 font-mono">{formatNumber(s.value)}</p>
+                      <p className="text-[9px] text-dark-500 uppercase tracking-wider mt-0.5">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Radar Chart */}
+                <div className="h-40">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
+                      <PolarGrid stroke="#21262d" />
+                      <PolarAngleAxis
+                        dataKey="skill"
+                        tick={{ fontSize: 9, fill: '#8b949e' }}
+                        tickLine={false}
+                      />
+                      <Radar
+                        dataKey="value"
+                        stroke={color}
+                        fill={color}
+                        fillOpacity={0.15}
+                        strokeWidth={2}
+                        dot={{ r: 3, fill: color, stroke: '#0d1117', strokeWidth: 1 }}
+                      />
+                    </RadarChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Code Impact */}
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-dark-600/20">
+                  <div className="flex items-center gap-3 text-xs">
+                    <span className="text-accent-green font-mono font-semibold">+{formatNumber(contributor.additions)}</span>
+                    <span className="text-accent-red font-mono font-semibold">-{formatNumber(contributor.deletions)}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] text-dark-400">
+                    <span>Net:</span>
+                    <span className={`font-mono font-semibold ${contributor.additions - contributor.deletions >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+                      {contributor.additions - contributor.deletions >= 0 ? '+' : ''}{formatNumber(contributor.additions - contributor.deletions)}
+                    </span>
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
+          );
+        })}
       </div>
-
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Contribution Comparison */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="glass-card p-6"
-        >
-          <h3 className="text-base font-semibold text-dark-50 mb-4">
-            Contribution Comparison
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={barData} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#21262D" />
-              <XAxis
-                dataKey="name"
-                stroke="#484F58"
-                fontSize={10}
-                tickLine={false}
-                tickFormatter={(v) => `@${v}`}
-              />
-              <YAxis stroke="#484F58" fontSize={10} tickLine={false} axisLine={false} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: "11px" }} iconType="circle" iconSize={8} />
-              <Bar dataKey="commits" name="Commits" fill="#8B5CF6" radius={[3, 3, 0, 0]} opacity={0.85} />
-              <Bar dataKey="prs" name="PRs" fill="#06B6D4" radius={[3, 3, 0, 0]} opacity={0.85} />
-              <Bar dataKey="reviews" name="Reviews" fill="#10B981" radius={[3, 3, 0, 0]} opacity={0.85} />
-            </BarChart>
-          </ResponsiveContainer>
-        </motion.div>
-
-        {/* Radar Chart */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="glass-card p-6"
-        >
-          <h3 className="text-base font-semibold text-dark-50 mb-4">
-            Skill Radar
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <RadarChart data={radarData}>
-              <PolarGrid stroke="#21262D" />
-              <PolarAngleAxis dataKey="metric" tick={{ fill: "#8B949E", fontSize: 11 }} />
-              {contributors.slice(0, 4).map((c, i) => (
-                <Radar
-                  key={c.username}
-                  name={`@${c.username}`}
-                  dataKey={c.username}
-                  stroke={COLORS[i]}
-                  fill={COLORS[i]}
-                  fillOpacity={0.1}
-                  strokeWidth={2}
-                />
-              ))}
-              <Legend wrapperStyle={{ fontSize: "11px" }} iconType="circle" iconSize={8} />
-              <Tooltip content={<CustomTooltip />} />
-            </RadarChart>
-          </ResponsiveContainer>
-        </motion.div>
-      </div>
-    </div>
+    </PageWrapper>
   );
 }
 

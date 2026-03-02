@@ -1,75 +1,51 @@
-import type { MetricsData } from "../types/metrics";
+import type { MetricsData } from '../types/metrics';
 
 let cachedData: MetricsData | null = null;
 
 export async function loadMetrics(): Promise<MetricsData> {
   if (cachedData) return cachedData;
 
-  // Try loading from the data directory (relative to the GitHub Pages root)
-  const base = import.meta.env.BASE_URL || "/";
-  const paths = [
-    `${base}data/metrics.json`,
-    "./data/metrics.json",
-    "../data/metrics.json",
-    "/DevMetricsDash/data/metrics.json",
-    "/data/metrics.json",
-    "../../data/metrics.json",
-  ];
-
-  for (const path of paths) {
-    try {
-      const resp = await fetch(path);
-      if (resp.ok) {
-        cachedData = await resp.json();
-        return cachedData!;
-      }
-    } catch {
-      // Try next path
-    }
-  }
-
-  throw new Error("Could not load metrics data. Run 'npm run update' first.");
+  const basePath = import.meta.env.BASE_URL || '/';
+  const res = await fetch(`${basePath}data/metrics.json`);
+  if (!res.ok) throw new Error('Failed to load metrics data');
+  cachedData = await res.json();
+  return cachedData!;
 }
 
 export function formatNumber(n: number): string {
-  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
-  if (n >= 1000) return (n / 1000).toFixed(1) + "K";
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
+  if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K';
   return n.toLocaleString();
 }
 
-export function formatHours(hours: number): string {
-  if (hours < 1) return `${Math.round(hours * 60)}m`;
-  if (hours < 24) return `${hours.toFixed(1)}h`;
-  if (hours < 168) return `${(hours / 24).toFixed(1)}d`;
-  return `${(hours / 168).toFixed(1)}w`;
+export function formatHours(h: number): string {
+  if (h < 1) return `${Math.round(h * 60)}m`;
+  if (h < 24) return `${h.toFixed(1)}h`;
+  return `${(h / 24).toFixed(1)}d`;
 }
 
-export function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const hours = diff / 3600000;
-  if (hours < 1) return `${Math.round(hours * 60)}m ago`;
-  if (hours < 24) return `${Math.round(hours)}h ago`;
-  if (hours < 168) return `${Math.round(hours / 24)}d ago`;
-  return `${Math.round(hours / 168)}w ago`;
+export function timeAgo(date: string): string {
+  const diff = Date.now() - new Date(date).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  return `${Math.floor(days / 30)}mo ago`;
 }
 
-export function getRatingColor(rating: string): string {
+export function getDoraRatingColor(rating: string): string {
   switch (rating) {
-    case "elite": return "#10B981";
-    case "high": return "#06B6D4";
-    case "medium": return "#F59E0B";
-    case "low": return "#EF4444";
-    default: return "#8B949E";
+    case 'elite': return '#10b981';
+    case 'high': return '#06b6d4';
+    case 'medium': return '#f59e0b';
+    case 'low': return '#ef4444';
+    default: return '#8b949e';
   }
 }
 
-export function getRatingBadgeClass(rating: string): string {
-  switch (rating) {
-    case "elite": return "badge-elite";
-    case "high": return "badge-high";
-    case "medium": return "badge-medium";
-    case "low": return "badge-low";
-    default: return "";
-  }
+export function getDoraRatingLabel(rating: string): string {
+  return rating.charAt(0).toUpperCase() + rating.slice(1);
 }
 

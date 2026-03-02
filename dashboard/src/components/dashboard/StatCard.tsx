@@ -1,101 +1,67 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
+import { formatNumber } from '../../services/dataService';
+import { useCountUp } from '../../hooks/useCountUp';
 
-interface StatCardProps {
-  icon: string;
+interface Props {
   label: string;
   value: number | string;
+  icon: string;
+  color: 'purple' | 'cyan' | 'green' | 'yellow' | 'pink' | 'orange';
   suffix?: string;
-  trend?: { value: number; label: string };
-  color: "purple" | "cyan" | "green" | "yellow" | "pink" | "orange";
+  trend?: number;
   delay?: number;
-  animate?: boolean;
 }
 
 const colorMap = {
-  purple: { text: "text-accent-purple", bg: "bg-accent-purple/10" },
-  cyan: { text: "text-accent-cyan", bg: "bg-accent-cyan/10" },
-  green: { text: "text-accent-green", bg: "bg-accent-green/10" },
-  yellow: { text: "text-accent-yellow", bg: "bg-accent-yellow/10" },
-  pink: { text: "text-accent-pink", bg: "bg-accent-pink/10" },
-  orange: { text: "text-accent-orange", bg: "bg-accent-orange/10" },
+  purple: 'text-accent-purple bg-accent-purple/10',
+  cyan: 'text-accent-cyan bg-accent-cyan/10',
+  green: 'text-accent-green bg-accent-green/10',
+  yellow: 'text-accent-yellow bg-accent-yellow/10',
+  pink: 'text-accent-pink bg-accent-pink/10',
+  orange: 'text-accent-orange bg-accent-orange/10',
 };
 
-export default function StatCard({
-  icon,
-  label,
-  value,
-  suffix,
-  trend,
-  color,
-  delay = 0,
-  animate = true,
-}: StatCardProps) {
-  const [displayValue, setDisplayValue] = useState(animate ? 0 : value);
-  const colors = colorMap[color];
-
-  useEffect(() => {
-    if (!animate || typeof value !== "number") {
-      setDisplayValue(value);
-      return;
-    }
-
-    const duration = 1500;
-    const steps = 60;
-    const stepDuration = duration / steps;
-    let current = 0;
-
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        current++;
-        const progress = current / steps;
-        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-        setDisplayValue(Math.round(eased * (value as number)));
-
-        if (current >= steps) {
-          clearInterval(interval);
-          setDisplayValue(value);
-        }
-      }, stepDuration);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [value, delay, animate]);
+export default function StatCard({ label, value, icon, color, suffix, trend, delay = 0 }: Props) {
+  const numericValue = typeof value === 'number' ? value : 0;
+  const animatedValue = useCountUp(numericValue, 1200, delay * 1000 + 200);
+  const displayValue = typeof value === 'number' ? formatNumber(animatedValue) : value;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay / 1000 }}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
       className={`stat-card ${color}`}
     >
       <div className="flex items-start justify-between">
-        <div
-          className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center text-xl`}
-        >
-          {icon}
-        </div>
-        {trend && (
-          <span
-            className={`text-xs font-medium ${
-              trend.value >= 0 ? "text-accent-green" : "text-accent-red"
-            }`}
-          >
-            {trend.value >= 0 ? "↑" : "↓"} {Math.abs(trend.value)}%
-            <span className="text-dark-400 ml-1">{trend.label}</span>
-          </span>
-        )}
-      </div>
-      <div className="mt-4">
-        <div className={`text-3xl font-bold ${colors.text} tracking-tight`}>
-          {typeof displayValue === "number"
-            ? displayValue.toLocaleString()
-            : displayValue}
-          {suffix && (
-            <span className="text-lg text-dark-400 ml-1">{suffix}</span>
+        <div className="min-w-0 flex-1">
+          <p className="text-[11px] font-medium uppercase tracking-wider text-dark-400 mb-2">
+            {label}
+          </p>
+          <div className="flex items-baseline gap-1.5">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: delay + 0.2, duration: 0.4, type: 'spring', stiffness: 200 }}
+              className="text-2xl font-bold tracking-tight text-dark-50"
+            >
+              {displayValue}
+            </motion.span>
+            {suffix && (
+              <span className="text-xs text-dark-400 font-medium">{suffix}</span>
+            )}
+          </div>
+          {trend !== undefined && (
+            <div className={`mt-2 flex items-center gap-1 text-xs font-medium ${trend >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+              <span>{trend >= 0 ? '↑' : '↓'}</span>
+              <span>{Math.abs(trend)}%</span>
+              <span className="text-dark-500 ml-1">vs last period</span>
+            </div>
           )}
         </div>
-        <p className="text-sm text-dark-300 mt-1 font-medium">{label}</p>
+        <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${colorMap[color]} flex-shrink-0`}>
+          <span className="text-lg">{icon}</span>
+        </div>
       </div>
     </motion.div>
   );

@@ -1,44 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="80" viewBox="0 0 840 80">
-  <style>
-    .title { font: 600 13px 'Segoe UI', system-ui, sans-serif; fill: #E6EDF3; }
-    .lang-label { font: 400 10px 'Segoe UI', system-ui, sans-serif; fill: #8B949E; }
-    .lang-pct { font: 600 10px 'Segoe UI', system-ui, sans-serif; }
-  </style>
-
-  <rect width="840" height="80" rx="10" fill="#0D1117" stroke="#30363D" stroke-width="1"/>
-  <text x="15" y="22" class="title">🗂️ Languages</text>
-  <rect x="15" y="42" width="342.63" height="12" rx="6" fill="#3178C6" opacity="0.9">
-    <title>TypeScript: 42.3%</title>
-  </rect>
-  <rect x="357.63" y="42" width="179.01" height="12" rx="0" fill="#3572A5" opacity="0.9">
-    <title>Python: 22.1%</title>
-  </rect>
-  <rect x="536.64" y="42" width="127.17" height="12" rx="0" fill="#00ADD8" opacity="0.9">
-    <title>Go: 15.7%</title>
-  </rect>
-  <rect x="663.81" y="42" width="68.04" height="12" rx="0" fill="#F7DF1E" opacity="0.9">
-    <title>JavaScript: 8.4%</title>
-  </rect>
-  <rect x="731.8499999999999" y="42" width="50.22" height="12" rx="0" fill="#563D7C" opacity="0.9">
-    <title>CSS: 6.2%</title>
-  </rect>
-  <rect x="782.0699999999999" y="42" width="30.779999999999998" height="12" rx="0" fill="#844FBA" opacity="0.9">
-    <title>HCL: 3.8%</title>
-  </rect>
-  <rect x="812.8499999999999" y="42" width="12.15" height="12" rx="0" fill="#6B7280" opacity="0.9">
-    <title>Other: 1.5%</title>
-  </rect>
-  <rect x="15" y="42" width="810" height="12" rx="6" fill="none" stroke="#30363D" stroke-width="0.5"/>
-  <circle cx="20" cy="72" r="4" fill="#3178C6"/>
-  <text x="27" y="76" class="lang-label">TypeScript <tspan class="lang-pct" fill="#3178C6">42.3%</tspan></text>
-  <circle cx="135" cy="72" r="4" fill="#3572A5"/>
-  <text x="142" y="76" class="lang-label">Python <tspan class="lang-pct" fill="#3572A5">22.1%</tspan></text>
-  <circle cx="226" cy="72" r="4" fill="#00ADD8"/>
-  <text x="233" y="76" class="lang-label">Go <tspan class="lang-pct" fill="#00ADD8">15.7%</tspan></text>
-  <circle cx="293" cy="72" r="4" fill="#F7DF1E"/>
-  <text x="300" y="76" class="lang-label">JavaScript <tspan class="lang-pct" fill="#F7DF1E">8.4%</tspan></text>
-  <circle cx="408" cy="72" r="4" fill="#563D7C"/>
-  <text x="415" y="76" class="lang-label">CSS <tspan class="lang-pct" fill="#563D7C">6.2%</tspan></text>
-  <circle cx="481" cy="72" r="4" fill="#844FBA"/>
-  <text x="488" y="76" class="lang-label">HCL <tspan class="lang-pct" fill="#844FBA">3.8%</tspan></text>
-</svg>
+<svg width="800" height="120" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="120" fill="#0d1117" rx="8"/>
+    <clipPath id="barClip"><rect x="50" y="30" width="700" height="24" rx="6"/></clipPath>
+    <g clip-path="url(#barClip)"><rect x="50" y="30" width="295.09999999999997" height="24" rx="6" fill="#3178C6"/><rect x="346.09999999999997" y="30" width="153.7" height="24" rx="0" fill="#3572A5"/><rect x="500.79999999999995" y="30" width="108.9" height="24" rx="0" fill="#00ADD8"/><rect x="610.6999999999999" y="30" width="57.800000000000004" height="24" rx="0" fill="#F7DF1E"/><rect x="669.4999999999999" y="30" width="42.4" height="24" rx="0" fill="#563D7C"/><rect x="712.8999999999999" y="30" width="25.599999999999998" height="24" rx="0" fill="#844FBA"/><rect x="739.4999999999999" y="30" width="9.5" height="24" rx="0" fill="#6B7280"/></g>
+    
+      <circle cx="50" cy="78" r="4" fill="#3178C6"/>
+      <text x="60" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">TypeScript <tspan fill="#484f58" font-family="JetBrains Mono,monospace">42.3%</tspan></text>
+      <circle cx="170" cy="78" r="4" fill="#3572A5"/>
+      <text x="180" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">Python <tspan fill="#484f58" font-family="JetBrains Mono,monospace">22.1%</tspan></text>
+      <circle cx="290" cy="78" r="4" fill="#00ADD8"/>
+      <text x="300" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">Go <tspan fill="#484f58" font-family="JetBrains Mono,monospace">15.7%</tspan></text>
+      <circle cx="410" cy="78" r="4" fill="#F7DF1E"/>
+      <text x="420" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">JavaScript <tspan fill="#484f58" font-family="JetBrains Mono,monospace">8.4%</tspan></text>
+      <circle cx="530" cy="78" r="4" fill="#563D7C"/>
+      <text x="540" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">CSS <tspan fill="#484f58" font-family="JetBrains Mono,monospace">6.2%</tspan></text>
+      <circle cx="650" cy="78" r="4" fill="#844FBA"/>
+      <text x="660" y="82" fill="#8b949e" font-size="10" font-family="Inter,sans-serif">HCL <tspan fill="#484f58" font-family="JetBrains Mono,monospace">3.8%</tspan></text>
+  </svg>

@@ -1,233 +1,154 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  ScatterChart,
-  Scatter,
-  ZAxis,
-  Cell,
-} from "recharts";
-import Header from "../components/layout/Header";
-import StatCard from "../components/dashboard/StatCard";
-import type { MetricsData } from "../types/metrics";
-import { timeAgo, formatHours } from "../services/dataService";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import type { MetricsData } from '../types/metrics';
+import PageWrapper, { fadeInUp } from '../components/layout/PageWrapper';
+import GlassCard from '../components/dashboard/GlassCard';
+import StatCard from '../components/dashboard/StatCard';
+import PRChart from '../components/charts/PRChart';
+import { formatHours, timeAgo } from '../services/dataService';
 
-interface PullRequestsProps {
+interface Props {
   data: MetricsData;
 }
 
-function CustomTooltip({ active, payload }: any) {
-  if (!active || !payload?.[0]) return null;
-  const d = payload[0].payload;
-  return (
-    <div className="glass-card p-3 shadow-xl border border-dark-600">
-      <p className="text-xs text-dark-100 font-medium mb-1">{d.title || d.name}</p>
-      {payload.map((entry: any, i: number) => (
-        <div key={i} className="flex items-center gap-2 text-xs">
-          <span className="text-dark-300">{entry.name}:</span>
-          <span className="font-semibold text-dark-50">{entry.value}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
+export default function PullRequests({ data }: Props) {
+  const { pull_requests, summary } = data;
+  const [filter, setFilter] = useState<'all' | 'merged' | 'open' | 'closed'>('all');
+  const [repoFilter, setRepoFilter] = useState<string>('all');
 
-export default function PullRequests({ data }: PullRequestsProps) {
-  const [filter, setFilter] = useState<"all" | "open" | "merged" | "closed">("all");
-  const prs = data.pull_requests;
-  const s = data.summary;
+  const repos = [...new Set(pull_requests.map(pr => pr.repo))];
 
-  const filtered = filter === "all" ? prs : prs.filter((pr) => pr.state === filter);
+  const filtered = pull_requests.filter(pr => {
+    if (filter !== 'all' && pr.state !== filter) return false;
+    if (repoFilter !== 'all' && pr.repo !== repoFilter) return false;
+    return true;
+  });
 
-  // Merge time distribution
-  const mergedPRs = prs.filter((p) => p.time_to_merge_hours != null);
-  const buckets = [
-    { range: "< 1h", min: 0, max: 1 },
-    { range: "1-4h", min: 1, max: 4 },
-    { range: "4-12h", min: 4, max: 12 },
-    { range: "12-24h", min: 12, max: 24 },
-    { range: "1-3d", min: 24, max: 72 },
-    { range: "3d+", min: 72, max: Infinity },
-  ];
-
-  const mergeDistribution = buckets.map((b) => ({
-    name: b.range,
-    count: mergedPRs.filter(
-      (p) => p.time_to_merge_hours! >= b.min && p.time_to_merge_hours! < b.max
-    ).length,
-  }));
-
-  // Scatter: PR size vs merge time
-  const scatterData = mergedPRs.map((p) => ({
-    size: p.additions + p.deletions,
-    hours: p.time_to_merge_hours,
-    title: p.title,
-    comments: p.comments + p.review_comments,
-  }));
+  const merged = pull_requests.filter(pr => pr.state === 'merged');
+  const avgMergeTime = merged.length
+    ? merged.reduce((sum, pr) => sum + pr.time_to_merge_hours, 0) / merged.length
+    : 0;
 
   const stateColors: Record<string, string> = {
-    open: "#10B981",
-    merged: "#8B5CF6",
-    closed: "#EF4444",
+    merged: 'bg-accent-purple/15 text-accent-purple ring-accent-purple/20',
+    open: 'bg-accent-green/15 text-accent-green ring-accent-green/20',
+    closed: 'bg-accent-red/15 text-accent-red ring-accent-red/20',
   };
 
   return (
-    <div>
-      <Header
-        title="Pull Requests"
-        subtitle={`${s.total_prs} total · ${s.total_prs_merged} merged · ${formatHours(s.avg_pr_merge_time_hours)} avg merge time`}
-        generatedAt={data.generated_at}
-      />
-
-      {/* Stats */}
+    <PageWrapper
+      title="Pull Requests"
+      subtitle={`${pull_requests.length} pull requests across all repositories`}
+    >
+      {/* Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard icon="🔀" label="Total PRs" value={s.total_prs} color="purple" delay={0} />
-        <StatCard icon="✅" label="Merged" value={s.total_prs_merged} color="green" delay={100} />
-        <StatCard icon="⏱️" label="Avg Merge Time" value={s.avg_pr_merge_time_hours} suffix="h" color="cyan" delay={200} animate={false} />
-        <StatCard icon="👀" label="Avg Review Time" value={s.avg_time_to_first_review_hours} suffix="h" color="yellow" delay={300} animate={false} />
+        <StatCard label="Total PRs" value={summary.total_prs} icon="🔀" color="purple" delay={0} />
+        <StatCard label="Merged" value={summary.total_prs_merged} icon="✅" color="green" delay={0.05} />
+        <StatCard label="Avg Merge Time" value={formatHours(avgMergeTime)} icon="⏱" color="cyan" delay={0.1} />
+        <StatCard label="Avg First Review" value={formatHours(summary.avg_time_to_first_review_hours)} icon="👁" color="yellow" delay={0.15} />
       </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {/* Merge Time Distribution */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="glass-card p-6"
-        >
-          <h3 className="text-base font-semibold text-dark-50 mb-4">
-            Merge Time Distribution
-          </h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={mergeDistribution}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#21262D" />
-              <XAxis dataKey="name" stroke="#484F58" fontSize={10} tickLine={false} />
-              <YAxis stroke="#484F58" fontSize={10} tickLine={false} axisLine={false} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="count" name="PRs" fill="#8B5CF6" radius={[4, 4, 0, 0]} opacity={0.85}>
-                {mergeDistribution.map((_, i) => (
-                  <Cell key={i} fill={i < 2 ? "#10B981" : i < 4 ? "#F59E0B" : "#EF4444"} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </motion.div>
+      {/* Chart */}
+      <motion.div variants={fadeInUp} className="mb-6">
+        <GlassCard title="Merge Time Distribution" subtitle="How fast PRs get merged" className="p-5" delay={0.1}>
+          <PRChart data={pull_requests} />
+        </GlassCard>
+      </motion.div>
 
-        {/* PR Size vs Merge Time */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="glass-card p-6"
-        >
-          <h3 className="text-base font-semibold text-dark-50 mb-4">
-            PR Size vs Merge Time
-          </h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <ScatterChart margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#21262D" />
-              <XAxis
-                dataKey="size"
-                name="Lines Changed"
-                stroke="#484F58"
-                fontSize={10}
-                tickLine={false}
-              />
-              <YAxis
-                dataKey="hours"
-                name="Merge Time (h)"
-                stroke="#484F58"
-                fontSize={10}
-                tickLine={false}
-                axisLine={false}
-              />
-              <ZAxis dataKey="comments" range={[30, 200]} name="Comments" />
-              <Tooltip content={<CustomTooltip />} />
-              <Scatter name="PRs" data={scatterData} fill="#8B5CF6" opacity={0.7} />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </motion.div>
-      </div>
-
-      {/* PR List */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="glass-card p-6"
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-dark-50">
-            Pull Requests
-          </h3>
-          <div className="flex gap-1">
-            {(["all", "open", "merged", "closed"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                  filter === f
-                    ? "bg-accent-purple/20 text-accent-purple"
-                    : "text-dark-400 hover:text-dark-200 hover:bg-dark-700/50"
-                }`}
-              >
-                {f.charAt(0).toUpperCase() + f.slice(1)}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-1">
-          {filtered.slice(0, 15).map((pr, i) => (
-            <motion.div
-              key={`${pr.repo}-${pr.number}`}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.03 }}
-              className="flex items-center gap-3 py-2.5 px-3 rounded-lg hover:bg-dark-700/30 transition-colors"
+      {/* Filters */}
+      <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3 mb-5">
+        <div className="flex items-center gap-1 bg-dark-700/30 rounded-lg p-1">
+          {(['all', 'merged', 'open', 'closed'] as const).map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 capitalize ${
+                filter === f
+                  ? 'bg-accent-purple/20 text-accent-purple shadow-sm'
+                  : 'text-dark-400 hover:text-dark-200'
+              }`}
             >
-              <div
-                className="w-2 h-2 rounded-full flex-shrink-0"
-                style={{ backgroundColor: stateColors[pr.state] }}
-              />
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-dark-100 truncate">{pr.title}</p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[11px] text-dark-500">#{pr.number}</span>
-                  <span className="text-dark-600">·</span>
-                  <span className="text-[11px] text-dark-400">@{pr.author}</span>
-                  <span className="text-dark-600">·</span>
-                  <span className="text-[11px] text-dark-500 font-mono">{pr.repo}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <span className="text-[11px] font-mono text-accent-green">
-                  +{pr.additions}
-                </span>
-                <span className="text-[11px] font-mono text-accent-red">
-                  -{pr.deletions}
-                </span>
-                {pr.time_to_merge_hours && (
-                  <span className="text-[11px] text-dark-400">
-                    {formatHours(pr.time_to_merge_hours)}
-                  </span>
-                )}
-                <span className="text-[11px] text-dark-500">
-                  {timeAgo(pr.created_at)}
-                </span>
-              </div>
-            </motion.div>
+              {f}
+            </button>
           ))}
         </div>
+        <select
+          value={repoFilter}
+          onChange={(e) => setRepoFilter(e.target.value)}
+          className="bg-dark-700/30 border border-dark-600/30 rounded-lg px-3 py-1.5 text-xs text-dark-200 outline-none focus:border-accent-purple/40 transition-colors"
+        >
+          <option value="all">All Repositories</option>
+          {repos.map(r => <option key={r} value={r}>{r}</option>)}
+        </select>
+        <span className="text-xs text-dark-500 ml-auto">{filtered.length} results</span>
       </motion.div>
-    </div>
+
+      {/* PR List */}
+      <motion.div variants={fadeInUp}>
+        <GlassCard className="overflow-hidden" hover={false} delay={0.2}>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-dark-600/30">
+                  <th className="text-left text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">PR</th>
+                  <th className="text-left text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">Author</th>
+                  <th className="text-left text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">Repo</th>
+                  <th className="text-left text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">State</th>
+                  <th className="text-right text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">Changes</th>
+                  <th className="text-right text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">Merge Time</th>
+                  <th className="text-right text-[10px] uppercase tracking-wider text-dark-500 font-medium p-4 pb-3">Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.slice(0, 20).map((pr, i) => (
+                  <motion.tr
+                    key={pr.number}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.02 }}
+                    className="border-b border-dark-600/10 hover:bg-dark-700/20 transition-colors group"
+                  >
+                    <td className="p-4 py-3">
+                      <div className="flex items-start gap-2 min-w-0">
+                        <span className="text-[10px] text-dark-500 font-mono mt-0.5">#{pr.number}</span>
+                        <span className="text-xs text-dark-200 truncate max-w-xs group-hover:text-dark-50 transition-colors">{pr.title}</span>
+                      </div>
+                    </td>
+                    <td className="p-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <img src={pr.author_avatar} alt={pr.author} className="h-5 w-5 rounded-full" />
+                        <span className="text-xs text-dark-300">{pr.author}</span>
+                      </div>
+                    </td>
+                    <td className="p-4 py-3">
+                      <span className="text-xs text-dark-400 font-mono">{pr.repo}</span>
+                    </td>
+                    <td className="p-4 py-3">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium ring-1 capitalize ${stateColors[pr.state] || ''}`}>
+                        {pr.state}
+                      </span>
+                    </td>
+                    <td className="p-4 py-3 text-right">
+                      <span className="text-[10px] font-mono text-accent-green">+{pr.additions}</span>
+                      <span className="text-dark-600 mx-1">/</span>
+                      <span className="text-[10px] font-mono text-accent-red">-{pr.deletions}</span>
+                    </td>
+                    <td className="p-4 py-3 text-right">
+                      <span className="text-xs text-dark-300 font-mono">
+                        {pr.time_to_merge_hours ? formatHours(pr.time_to_merge_hours) : '—'}
+                      </span>
+                    </td>
+                    <td className="p-4 py-3 text-right">
+                      <span className="text-[11px] text-dark-400">{timeAgo(pr.created_at)}</span>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </GlassCard>
+      </motion.div>
+    </PageWrapper>
   );
 }
 

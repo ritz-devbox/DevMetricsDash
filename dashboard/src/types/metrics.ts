@@ -1,7 +1,37 @@
-// Re-export types for the dashboard
-// These match the data structure from scripts/types.ts
+export interface MetricsData {
+  generated_at: string;
+  config: { owner: string; lookback_days: number };
+  summary: Summary;
+  contributors: Contributor[];
+  commits: Commit[];
+  pull_requests: PullRequest[];
+  issues: Issue[];
+  daily_activity: DailyActivity[];
+  weekly_activity: WeeklyActivity[];
+  repositories: Repository[];
+  dora: DoraMetrics;
+  heatmap: HeatmapDay[];
+  languages: Language[];
+}
 
-export interface ContributorStats {
+export interface Summary {
+  total_commits: number;
+  total_prs: number;
+  total_prs_merged: number;
+  total_issues: number;
+  total_issues_closed: number;
+  total_reviews: number;
+  total_releases: number;
+  total_contributors: number;
+  total_repositories: number;
+  avg_pr_merge_time_hours: number;
+  avg_time_to_first_review_hours: number;
+  avg_issue_close_time_hours: number;
+  code_additions: number;
+  code_deletions: number;
+}
+
+export interface Contributor {
   username: string;
   avatar_url: string;
   total_commits: number;
@@ -15,7 +45,7 @@ export interface ContributorStats {
   last_commit_date: string;
 }
 
-export interface CommitData {
+export interface Commit {
   sha: string;
   message: string;
   author: string;
@@ -27,12 +57,12 @@ export interface CommitData {
   repo: string;
 }
 
-export interface PullRequestData {
+export interface PullRequest {
   number: number;
   title: string;
   author: string;
   author_avatar: string;
-  state: "open" | "closed" | "merged";
+  state: string;
   created_at: string;
   merged_at: string | null;
   closed_at: string | null;
@@ -42,23 +72,23 @@ export interface PullRequestData {
   comments: number;
   review_comments: number;
   reviews: number;
-  time_to_merge_hours: number | null;
-  time_to_first_review_hours: number | null;
+  time_to_merge_hours: number;
+  time_to_first_review_hours: number;
   repo: string;
   labels: string[];
 }
 
-export interface IssueData {
+export interface Issue {
   number: number;
   title: string;
   author: string;
-  state: "open" | "closed";
+  state: string;
   created_at: string;
   closed_at: string | null;
   labels: string[];
   comments: number;
-  time_to_close_hours: number | null;
   repo: string;
+  time_to_close_hours?: number;
 }
 
 export interface DailyActivity {
@@ -85,7 +115,7 @@ export interface WeeklyActivity {
   active_contributors: number;
 }
 
-export interface RepositoryStats {
+export interface Repository {
   name: string;
   full_name: string;
   description: string;
@@ -101,70 +131,23 @@ export interface RepositoryStats {
   languages: Record<string, number>;
 }
 
-export interface DORAMetrics {
-  deployment_frequency: {
-    value: number;
-    unit: string;
-    rating: "elite" | "high" | "medium" | "low";
-  };
-  lead_time_for_changes: {
-    value_hours: number;
-    rating: "elite" | "high" | "medium" | "low";
-  };
-  change_failure_rate: {
-    value_percent: number;
-    rating: "elite" | "high" | "medium" | "low";
-  };
-  mean_time_to_recovery: {
-    value_hours: number;
-    rating: "elite" | "high" | "medium" | "low";
-  };
+export interface DoraMetrics {
+  deployment_frequency: { value: number; unit: string; rating: string };
+  lead_time_for_changes: { value_hours: number; rating: string };
+  change_failure_rate: { value_percent: number; rating: string };
+  mean_time_to_recovery: { value_hours: number; rating: string };
 }
 
-export interface HeatmapData {
+export interface HeatmapDay {
   date: string;
   count: number;
-  level: 0 | 1 | 2 | 3 | 4;
+  level: number;
 }
 
-export interface LanguageBreakdown {
+export interface Language {
   language: string;
   percentage: number;
   color: string;
   bytes: number;
-}
-
-export interface MetricsData {
-  generated_at: string;
-  config: {
-    owner: string;
-    lookback_days: number;
-  };
-  summary: {
-    total_commits: number;
-    total_prs: number;
-    total_prs_merged: number;
-    total_issues: number;
-    total_issues_closed: number;
-    total_reviews: number;
-    total_releases: number;
-    total_contributors: number;
-    total_repositories: number;
-    avg_pr_merge_time_hours: number;
-    avg_time_to_first_review_hours: number;
-    avg_issue_close_time_hours: number;
-    code_additions: number;
-    code_deletions: number;
-  };
-  contributors: ContributorStats[];
-  commits: CommitData[];
-  pull_requests: PullRequestData[];
-  issues: IssueData[];
-  daily_activity: DailyActivity[];
-  weekly_activity: WeeklyActivity[];
-  repositories: RepositoryStats[];
-  dora: DORAMetrics;
-  heatmap: HeatmapData[];
-  languages: LanguageBreakdown[];
 }
 

@@ -1,11 +1,11 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: "/DevMetricsDash/",
+  base: '/DevMetricsDash/',
   build: {
-    outDir: "dist",
+    outDir: 'dist',
   },
 });
 

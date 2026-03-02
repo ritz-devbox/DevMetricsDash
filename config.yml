@@ -1,57 +1,15 @@
-# ============================================================
-# DevMetricsDash Configuration
-# ============================================================
-# Customize which repos, users, and metrics to track.
-# The GitHub Action will use this config to fetch data.
-# ============================================================
+# ── DevMetricsDash Configuration ──────────────────────────
+#
+# Set your GitHub username/org below.
+# Then either list specific repos, or leave empty to auto-discover all your repos.
 
-# GitHub username or organization
 owner: "ritz-devbox"
 
-# Repositories to track (leave empty to track all public repos)
-repositories:
+# Leave empty [] to track ALL your public repos automatically
+# Or list specific repos to track:
+repositories: []
   # - repo-name-1
   # - repo-name-2
 
-# Team members to track (GitHub usernames)
-# Leave empty to auto-detect from commit history
-team: []
-
-# Metrics configuration
-metrics:
-  # Number of days to look back for data
-  lookback_days: 90
-
-  # Which metrics to collect
-  collect:
-    commits: true
-    pull_requests: true
-    issues: true
-    code_reviews: true
-    releases: true
-    code_frequency: true
-
-# Dashboard settings
-dashboard:
-  title: "DevMetricsDash"
-  theme: "dark"
-  accent_color: "#8B5CF6"  # Purple
-
-# README chart settings
-readme:
-  # Which charts to embed in README
-  charts:
-    - contribution_heatmap
-    - commit_activity
-    - pr_stats
-    - language_breakdown
-    - top_contributors
-  
-  # Chart dimensions
-  chart_width: 840
-  chart_height: 200
-
-# Schedule (cron expression for GitHub Action)
-# Default: Every day at 6 AM UTC
-schedule: "0 6 * * *"
-
+# How many days of history to fetch (max ~90 for good API performance)
+lookback_days: 90
